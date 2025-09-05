@@ -3,25 +3,47 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint"
+"dev": "next dev",
+        "build": "next build",
+        "build:prod": "rm -rf .next && next build",
+        "build:cloudflare": "cross-env CF_PAGES=1 next build",
+        "start": "next start",
+        "lint": "next lint",
+        "server-local": "npx next start -p 4000",
+        "trans": "node src/scripts/translate.js",
+        "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+        "format:lint-staged": "lint-staged",
+        "prepare-husky": "husky install && npx win-chmod 755 .husky/*",
+        "postinstall": "patch-package"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.1.0",
+    "@rainbow-me/rainbowkit": "^2.2.8",
+    "@reduxjs/toolkit": "^2.9.0",
+    "@tanstack/react-query": "^5.86.0",
+    "antd": "^5.27.2",
+    "next": "15.5.2",
+    "next-intl": "^4.3.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.2"
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7",
+    "viem": "^2.37.3",
+    "wagmi": "^2.16.9"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5"
   }
 }
