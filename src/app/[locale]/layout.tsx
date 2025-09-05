@@ -55,7 +55,7 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  const locale = 'en'; // Default to English
+  const locale = 'vi'; // Default to VietNamese
   
   let messages;
   try {
