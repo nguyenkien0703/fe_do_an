@@ -4,7 +4,6 @@ import { Layout } from 'antd';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode } from 'react';
 import Content from './content';
-import Footer from './footer';
 import Header from './header';
 
 export interface IWorkspaceLayout {
@@ -26,7 +25,6 @@ const WorkspaceLayout = (props: IWorkspaceLayout) => {
       <Layout className="mt-12">
         <Content {...props} />
       </Layout>
-      <Footer />
     </Layout>
   );
 };
