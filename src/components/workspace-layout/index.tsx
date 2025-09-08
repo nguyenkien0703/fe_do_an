@@ -1,17 +1,17 @@
-/* eslint-disable */
 'use client';
 import { Layout } from 'antd';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 import Content from './content';
 import Header from './header';
+import SidebarLeft from './sidebar-left';
+import SidebarRight from './sidebar-right';
 
 export interface IWorkspaceLayout {
   children: ReactNode;
 }
 
 const WorkspaceLayout = (props: IWorkspaceLayout) => {
-  const router = useRouter();
   const pathname = usePathname();
   const currentPath = pathname?.split('/');
 
@@ -20,12 +20,16 @@ const WorkspaceLayout = (props: IWorkspaceLayout) => {
   }
 
   return (
-    <Layout className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       <Header />
-      <Layout className="mt-12">
-        <Content {...props} />
-      </Layout>
-    </Layout>
+      <div className="flex pt-16">
+        <SidebarLeft />
+        <div className="flex-1 px-4">
+          <Content {...props} />
+        </div>
+        <SidebarRight />
+      </div>
+    </div>
   );
 };
 export default WorkspaceLayout;

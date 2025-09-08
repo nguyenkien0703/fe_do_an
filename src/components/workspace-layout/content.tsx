@@ -3,14 +3,9 @@ import { IWorkspaceLayout } from '.';
 
 const Content = ({ children }: IWorkspaceLayout) => {
   return (
-    <Layout.Content
-    // style={{
-    //     // marginLeft: `${sidebarWidth}px`,
-    //     transition: `margin-left .15s`,
-    // }}
-    >
+    <div className="min-h-screen py-6">
       {children}
-    </Layout.Content>
+    </div>
   );
 };
 export default Content;
