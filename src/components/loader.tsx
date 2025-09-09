@@ -1,15 +1,11 @@
-import { Row, Spin } from 'antd';
+import { Row, Spin } from 'antd'
 
 const Loader = () => {
   return (
-    <Row
-      align={'middle'}
-      justify={'center'}
-      style={{ height: '100vh' }}
-    >
+    <Row align={'middle'} justify={'center'} style={{ height: '100vh' }}>
       <Spin tip="Loading..." />
     </Row>
-  );
-};
+  )
+}
 
-export default Loader;
+export default Loader

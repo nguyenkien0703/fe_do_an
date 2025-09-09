@@ -1,13 +1,13 @@
-'use client';
-import { Layout } from 'antd';
-import { usePathname } from 'next/navigation';
-import { ReactNode } from 'react';
-import Content from './content';
-import Header from './header';
-import SidebarLeft from './sidebar-left';
-import SidebarRight from './sidebar-right';
+'use client'
+import { Layout } from 'antd'
+import { usePathname } from 'next/navigation'
+import { ReactNode } from 'react'
+import Content from './content'
+import Header from './header'
+import SidebarLeft from './sidebar-left'
+import SidebarRight from './sidebar-right'
 export interface IWorkspaceLayout {
-  children: ReactNode;
+  children: ReactNode
 }
 
 const WorkspaceLayout = (props: IWorkspaceLayout) => {
@@ -23,6 +23,6 @@ const WorkspaceLayout = (props: IWorkspaceLayout) => {
         <SidebarRight />
       </Layout>
     </Layout>
-  );
-};
-export default WorkspaceLayout;
+  )
+}
+export default WorkspaceLayout

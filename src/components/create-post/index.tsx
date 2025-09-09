@@ -1,11 +1,11 @@
-'use client';
-import { Avatar, Input, Button } from 'antd';
+'use client'
+import { Avatar, Input, Button } from 'antd'
 import {
   PictureOutlined,
   VideoCameraOutlined,
-  SmileOutlined
-} from '@ant-design/icons';
-import React from 'react';
+  SmileOutlined,
+} from '@ant-design/icons'
+import React from 'react'
 
 const CreatePost = () => {
   return (
@@ -62,7 +62,7 @@ const CreatePost = () => {
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CreatePost;
+export default CreatePost

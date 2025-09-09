@@ -1,55 +1,55 @@
-'use client';
-import { Menu, Avatar } from 'antd';
+'use client'
+import { Menu, Avatar } from 'antd'
 import {
   HomeOutlined,
   UserOutlined,
   BellOutlined,
   VideoCameraOutlined,
   DesktopOutlined,
-  TeamOutlined
-} from '@ant-design/icons';
-import React from 'react';
+  TeamOutlined,
+} from '@ant-design/icons'
+import React from 'react'
 
 const SidebarLeft = () => {
   const menuItems = [
     {
       key: '1',
       icon: <HomeOutlined />,
-      label: 'Bảng tin'
+      label: 'Bảng tin',
     },
     {
       key: '2',
       icon: <UserOutlined />,
-      label: 'Bạn bè'
+      label: 'Bạn bè',
     },
     {
       key: '3',
       icon: <BellOutlined />,
-      label: 'Thông báo'
+      label: 'Thông báo',
     },
     {
       key: '4',
       icon: <VideoCameraOutlined />,
-      label: 'Video'
+      label: 'Video',
     },
     {
       key: '5',
       icon: <DesktopOutlined />,
-      label: 'Trực tiếp'
+      label: 'Trực tiếp',
     },
     {
       key: '6',
       icon: <TeamOutlined />,
-      label: 'Nhóm'
-    }
-  ];
+      label: 'Nhóm',
+    },
+  ]
 
   const recentActivities = [
     { id: 1, name: 'Roger Korsgaard', time: 'recent' },
     { id: 2, name: 'Tìm kiếm ABC', time: 'recent' },
     { id: 3, name: 'Tham gia nhóm ABC', time: 'recent' },
-    { id: 4, name: 'NoName', time: 'recent' }
-  ];
+    { id: 4, name: 'NoName', time: 'recent' },
+  ]
 
   return (
     <div className="sticky top-16 h-[calc(100vh-64px)] w-64 overflow-y-auto bg-white shadow-sm">
@@ -98,7 +98,7 @@ const SidebarLeft = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SidebarLeft;
+export default SidebarLeft

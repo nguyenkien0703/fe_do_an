@@ -28,7 +28,7 @@
     "@babel/runtime" "^7.23.2"
     rc-util "^5.38.0"
 
-"@ant-design/cssinjs@^1.21.0", "@ant-design/cssinjs@^1.23.0":
+"@ant-design/cssinjs@^1.19.1", "@ant-design/cssinjs@^1.21.0", "@ant-design/cssinjs@^1.23.0":
   version "1.24.0"
   resolved "https://registry.npmjs.org/@ant-design/cssinjs/-/cssinjs-1.24.0.tgz"
   integrity sha512-K4cYrJBsgvL+IoozUXYjbT6LHHNt+19a9zkvpBPxLjFHas1UpPM2A5MlhROb0BT8N8WoavM5VsP9MeSeNK/3mg==
@@ -53,7 +53,7 @@
   resolved "https://registry.npmjs.org/@ant-design/icons-svg/-/icons-svg-4.4.2.tgz"
   integrity sha512-vHbT+zJEVzllwP+CM+ul7reTEfBR0vgxFe7+lREAsAA7YGsYpboiq2sQNeQeRvh09GfQgs/GyFEvZpJ9cLXpXA==
 
-"@ant-design/icons@^5.6.1":
+"@ant-design/icons@^5.3.6", "@ant-design/icons@^5.6.1":
   version "5.6.1"
   resolved "https://registry.npmjs.org/@ant-design/icons/-/icons-5.6.1.tgz"
   integrity sha512-0/xS39c91WjPAZOWsvi1//zjx6kAp4kxWwctR6kuU6p133w8RU0D2dSCvZC19uQyharg/sAvYxGYWl01BbZZfg==
@@ -64,9 +64,9 @@
     classnames "^2.2.6"
     rc-util "^5.31.1"
 
-"@ant-design/nextjs-registry@^1.1.0":
+"@ant-design/nextjs-registry@^1.0.1":
   version "1.1.0"
-  resolved "https://registry.npmjs.org/@ant-design/nextjs-registry/-/nextjs-registry-1.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/@ant-design/nextjs-registry/-/nextjs-registry-1.1.0.tgz#727ffdc357df663c5240b1e7c8a3a5c1eb44a292"
   integrity sha512-zZ9SKyqTHonUK7l/z/ixpVx0LSnZTlIqYFOccSDI7jx7ojCMTGxzkl3ugGWPPh8xPYDsVxqzwJZBic84H7LgLw==
 
 "@ant-design/react-slick@~1.1.2":
@@ -1923,10 +1923,10 @@ ansi-styles@^6.1.0:
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-6.2.3.tgz#c044d5dcc521a076413472597a1acb1f103c4041"
   integrity sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==
 
-antd@^5.27.2:
-  version "5.27.2"
-  resolved "https://registry.npmjs.org/antd/-/antd-5.27.2.tgz"
-  integrity sha512-9pYRUTrumIEuulRwZijhcnL6ScBZ1X6Y3iJa67VyNhEZAiXtENA7AtggsnqdVclQIm0WL4ky76qUdWrVhDWF3g==
+antd@^5.18.0:
+  version "5.27.3"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-5.27.3.tgz#6c7cf0baf1907e0766f6f44fe729aaaf108ac440"
+  integrity sha512-Jewp1ek1iyqoAyjWyPgzc2kioZ+7S3jh39a+tld/j4ucnuf/cBk4omfyIdhLz49pVNsaEcRp5LtJOSQPFwPgpA==
   dependencies:
     "@ant-design/colors" "^7.2.1"
     "@ant-design/cssinjs" "^1.23.0"
@@ -1967,7 +1967,7 @@ antd@^5.27.2:
     rc-slider "~11.1.8"
     rc-steps "~6.0.1"
     rc-switch "~4.1.0"
-    rc-table "~7.51.1"
+    rc-table "~7.52.6"
     rc-tabs "~15.7.0"
     rc-textarea "~1.10.2"
     rc-tooltip "~6.4.0"
@@ -5081,10 +5081,10 @@ rc-switch@~4.1.0:
     classnames "^2.2.1"
     rc-util "^5.30.0"
 
-rc-table@~7.51.1:
-  version "7.51.1"
-  resolved "https://registry.npmjs.org/rc-table/-/rc-table-7.51.1.tgz"
-  integrity sha512-5iq15mTHhvC42TlBLRCoCBLoCmGlbRZAlyF21FonFnS/DIC8DeRqnmdyVREwt2CFbPceM0zSNdEeVfiGaqYsKw==
+rc-table@~7.52.6:
+  version "7.52.7"
+  resolved "https://registry.yarnpkg.com/rc-table/-/rc-table-7.52.7.tgz#ad816bbcfe3491581d9140a59a9e43fd08327211"
+  integrity sha512-yuZfnTpuHwRa4JH+F28wQfGeDzqtgIDvLBBJk5sFncXQjTExhtBNc6dPfVo5pL5SjabJEoejefs6wsrAKfhDoQ==
   dependencies:
     "@babel/runtime" "^7.10.1"
     "@rc-component/context" "^1.4.0"

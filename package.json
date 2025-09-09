@@ -16,12 +16,14 @@
     "prepare-husky": "husky install && npx win-chmod 755 .husky/*",
     "postinstall": "patch-package"
   },
-  "dependencies": {
-    "@ant-design/nextjs-registry": "^1.1.0",
+  "dependencies": { 
+         "antd": "^5.18.0",
+  "@ant-design/cssinjs": "^1.19.1",
+  "@ant-design/icons": "^5.3.6",
+  "@ant-design/nextjs-registry": "^1.0.1",
     "@rainbow-me/rainbowkit": "^2.2.8",
     "@reduxjs/toolkit": "^2.9.0",
     "@tanstack/react-query": "^5.86.0",
-    "antd": "^5.27.2",
     "autoprefixer": "10.4.14",
     "axios": "^1.11.0",
     "next": "15.5.2",

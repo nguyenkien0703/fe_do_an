@@ -1,25 +1,25 @@
-'use client';
-import { Avatar, Button, Image } from 'antd';
+'use client'
+import { Avatar, Button, Image } from 'antd'
 import {
   LikeOutlined,
   CommentOutlined,
   ShareAltOutlined,
-  EllipsisOutlined
-} from '@ant-design/icons';
-import React, { useState } from 'react';
+  EllipsisOutlined,
+} from '@ant-design/icons'
+import React, { useState } from 'react'
 
 interface PostProps {
-  id: string;
+  id: string
   author: {
-    name: string;
-    avatar: string;
-    time: string;
-  };
-  content: string;
-  images?: string[];
-  likes: number;
-  comments: number;
-  shares: number;
+    name: string
+    avatar: string
+    time: string
+  }
+  content: string
+  images?: string[]
+  likes: number
+  comments: number
+  shares: number
 }
 
 const Post: React.FC<PostProps> = ({
@@ -28,19 +28,19 @@ const Post: React.FC<PostProps> = ({
   images,
   likes,
   comments,
-  shares
+  shares,
 }) => {
-  const [liked, setLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(likes);
+  const [liked, setLiked] = useState(false)
+  const [likesCount, setLikesCount] = useState(likes)
 
   const handleLike = () => {
     if (liked) {
-      setLikesCount(likesCount - 1);
+      setLikesCount(likesCount - 1)
     } else {
-      setLikesCount(likesCount + 1);
+      setLikesCount(likesCount + 1)
     }
-    setLiked(!liked);
-  };
+    setLiked(!liked)
+  }
 
   return (
     <div className="mb-6 overflow-hidden rounded-lg bg-white shadow-sm">
@@ -48,10 +48,7 @@ const Post: React.FC<PostProps> = ({
       <div className="p-4">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-3">
-            <Avatar
-              size={48}
-              src={author.avatar}
-            />
+            <Avatar size={48} src={author.avatar} />
             <div>
               <div className="font-semibold text-gray-900">{author.name}</div>
               <div className="text-sm text-gray-500">{author.time}</div>
@@ -144,7 +141,7 @@ const Post: React.FC<PostProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Post;
+export default Post

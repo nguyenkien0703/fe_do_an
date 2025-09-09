@@ -1,32 +1,32 @@
 /* eslint-disable */
-import { Roboto } from 'next/font/google';
-import { notFound } from 'next/navigation';
-import { ReactNode } from 'react';
-import './globals.css';
+import { Roboto } from 'next/font/google'
+import { notFound } from 'next/navigation'
+import { ReactNode } from 'react'
+import './globals.css'
 
-import { Metadata } from 'next';
-import { siteConfig } from '@/constant/siteConfig';
-import GlobalProvider from '@/global-provider';
-import WorkspaceLayout from '@/components/workspace-layout';
-const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] });
+import { Metadata } from 'next'
+import { siteConfig } from '@/constant/siteConfig'
+import GlobalProvider from '@/global-provider'
+import WorkspaceLayout from '@/components/workspace-layout'
+const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: `%s | ${siteConfig.title}`
+    template: `%s | ${siteConfig.title}`,
   },
   description: siteConfig.description,
   icons: {
     icon: siteConfig.icon,
     shortcut: siteConfig.logo,
-    apple: siteConfig.logo
+    apple: siteConfig.logo,
   },
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [siteConfig.landing]
+    images: [siteConfig.landing],
   },
   openGraph: {
     type: 'website',
@@ -38,93 +38,47 @@ export const metadata: Metadata = {
         url: siteConfig.landing,
         width: 1200,
         height: 630,
-        alt: 'Landing Meta Image'
-      }
-    ]
+        alt: 'Landing Meta Image',
+      },
+    ],
   },
-  robots: 'index, follow'
-};
+  robots: 'index, follow',
+}
 
 export const viewport = {
   width: 'device-width',
-  initialScale: 1.0
-};
+  initialScale: 1.0,
+}
 
 export function generateStaticParams() {
-  return [{ locale: 'vi' }, { locale: 'en' }];
+  return [{ locale: 'vi' }, { locale: 'en' }]
 }
 
 export default async function RootLayout({
   children,
-  params: { locale }
+  params,
 }: {
-  children: ReactNode;
-  params: {
-    locale: string;
-  };
+  children: ReactNode
+  params: Promise<{
+    locale: string
+  }>
 }) {
-  let messages;
+  const { locale } = await params
+
+  let messages
   try {
-    messages = (await import(`../../locales/${locale}.json`)).default;
+    messages = (await import(`../../locales/${locale}.json`)).default
   } catch (error) {
-    notFound();
+    notFound()
   }
 
   return (
-    <html
-      lang={locale}
-      className="scroll-smooth"
-    >
+    <html lang={locale} className="scroll-smooth">
       <body className={roboto.className}>
-        <GlobalProvider
-          locale={locale}
-          messages={messages}
-        >
+        <GlobalProvider locale={locale} messages={messages}>
           {children}
         </GlobalProvider>
       </body>
     </html>
-  );
+  )
 }
-
-// export default async function RootLayout({
-//   children
-// }: {
-//   children: ReactNode;
-// }) {
-//   const locale = 'vi'; // Default to VietNamese
-
-//   let messages;
-//   try {
-//     messages = (await import(`../../locales/${locale}.json`)).default;
-//   } catch (error) {
-//     notFound();
-//   }
-
-//   return (
-//     <html
-//       lang={locale}
-//       className="scroll-smooth"
-//     >
-//       <head>
-//         <link
-//           rel="stylesheet"
-//           href="https://ai-cms.alex-defikit.workers.dev/styling.css"
-//         />
-//         <script src="https://ai-cms.alex-defikit.workers.dev/widget.js"></script>
-//       </head>
-
-//       <body className={roboto.className}>
-//         <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-//         <noscript>You need to enable JavaScript to run this app.</noscript>
-//         <GlobalProvider
-//           locale={locale}
-//           messages={messages}
-//         >
-//           <WorkspaceLayout>{children}</WorkspaceLayout>
-//         </GlobalProvider>
-//       </body>
-//     </html>
-//   );
-// }
