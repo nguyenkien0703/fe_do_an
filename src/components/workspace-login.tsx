@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
-import { Row, Col, Button, Input, Checkbox, Avatar } from 'antd'
+import { Row, Col, Button, Input, Checkbox, Avatar, Form } from 'antd'
 import { GoogleOutlined, CloseOutlined } from '@ant-design/icons'
 
 export const WorkspaceLogin = () => {
   const [isRegister, setIsRegister] = useState(false)
+  const [loginForm] = Form.useForm()
+  const [registerForm] = Form.useForm()
+
+  const onLoginFinish = (values: any) => {
+    console.log('Login values:', values)
+  }
+
+  const onRegisterFinish = (values: any) => {
+    console.log('Register values:', values)
+  }
   return (
     <div style={{ height: '100vh', position: 'relative' }}>
       <Row style={{ height: '100%' }}>
@@ -272,181 +282,234 @@ export const WorkspaceLogin = () => {
                   </Button>
                 )}
 
-                {/* Form Fields */}
-                <Row>
-                  <Col span={24}>
-                    {/* Username field - only show in register mode */}
-                    {isRegister && (
-                      <div style={{ marginBottom: '20px' }}>
-                        <label
-                          style={{
-                            display: 'block',
-                            marginBottom: '6px',
-                            fontSize: '14px',
-                            fontWeight: '500',
-                            color: '#000',
-                          }}
-                        >
-                          Username
-                        </label>
-                        <Input
-                          size="large"
-                          placeholder="Username"
-                          style={{
-                            borderRadius: '10px',
-                            height: '48px',
-                            fontSize: '15px',
-                            border: '1px solid #d9d9d9',
-                            backgroundColor: '#fafafa',
-                          }}
-                        />
-                      </div>
-                    )}
-
-                    {/* Email field - only show in register mode */}
-                    {isRegister && (
-                      <div style={{ marginBottom: '20px' }}>
-                        <label
-                          style={{
-                            display: 'block',
-                            marginBottom: '6px',
-                            fontSize: '14px',
-                            fontWeight: '500',
-                            color: '#000',
-                          }}
-                        >
-                          Email
-                        </label>
-                        <Input
-                          size="large"
-                          placeholder="Email"
-                          type="email"
-                          style={{
-                            borderRadius: '10px',
-                            height: '48px',
-                            fontSize: '15px',
-                            border: '1px solid #d9d9d9',
-                            backgroundColor: '#fafafa',
-                          }}
-                        />
-                      </div>
-                    )}
-
-                    {/* Username/Email field - only show in login mode */}
-                    {!isRegister && (
-                      <div style={{ marginBottom: '24px' }}>
-                        <label
-                          style={{
-                            display: 'block',
-                            marginBottom: '8px',
-                            fontSize: '15px',
-                            fontWeight: '500',
-                            color: '#000',
-                          }}
-                        >
+                {/* Login Form */}
+                {!isRegister && (
+                  <Form
+                    form={loginForm}
+                    onFinish={onLoginFinish}
+                    layout="vertical"
+                    requiredMark={false}
+                  >
+                    <Form.Item
+                      label={
+                        <span style={{ fontSize: '15px', fontWeight: '500', color: '#000' }}>
                           Username hoặc email của bạn
-                        </label>
-                        <Input
-                          size="large"
-                          placeholder="username hoặc email"
-                          style={{
-                            borderRadius: '12px',
-                            height: '52px',
-                            fontSize: '16px',
-                            border: '1px solid #d9d9d9',
-                            backgroundColor: '#fafafa',
-                          }}
-                        />
-                      </div>
-                    )}
-
-                    {/* Password field - show in both modes */}
-                    <div style={{ marginBottom: isRegister ? '20px' : '24px' }}>
-                      <label
-                        style={{
-                          display: 'block',
-                          marginBottom: isRegister ? '6px' : '8px',
-                          fontSize: isRegister ? '14px' : '15px',
-                          fontWeight: '500',
-                          color: '#000',
-                        }}
-                      >
-                        Mật khẩu
-                      </label>
-                      <Input.Password
+                        </span>
+                      }
+                      name="usernameOrEmail"
+                      rules={[{ required: true, message: 'Vui lòng nhập username hoặc email!' }]}
+                      style={{ marginBottom: '24px' }}
+                    >
+                      <Input
                         size="large"
-                        placeholder="Mật khẩu"
+                        placeholder="username hoặc email"
                         style={{
-                          borderRadius: isRegister ? '10px' : '12px',
-                          height: isRegister ? '48px' : '52px',
-                          fontSize: isRegister ? '15px' : '16px',
+                          borderRadius: '12px',
+                          height: '52px',
+                          fontSize: '16px',
                           border: '1px solid #d9d9d9',
                           backgroundColor: '#fafafa',
                         }}
                       />
-                    </div>
+                    </Form.Item>
 
-                    {/* Confirm password field - only show in register mode */}
-                    {isRegister && (
-                      <div style={{ marginBottom: '20px' }}>
-                        <label
-                          style={{
-                            display: 'block',
-                            marginBottom: '6px',
-                            fontSize: '14px',
-                            fontWeight: '500',
-                            color: '#000',
-                          }}
-                        >
-                          Xác nhận mật khẩu
-                        </label>
-                        <Input.Password
-                          size="large"
-                          placeholder="Xác nhận mật khẩu"
-                          style={{
-                            borderRadius: '10px',
-                            height: '48px',
-                            fontSize: '15px',
-                            border: '1px solid #d9d9d9',
-                            backgroundColor: '#fafafa',
-                          }}
-                        />
-                      </div>
-                    )}
-
-                    {/* Remember me and forgot password - only show in login mode */}
-                    {!isRegister && (
-                      <Row justify="space-between" align="middle" style={{ marginBottom: '28px' }}>
-                        <Col>
-                          <Checkbox style={{ fontSize: '14px' }}>Nhớ tôi</Checkbox>
-                        </Col>
-                        <Col>
-                          <a href="#" style={{ fontSize: '14px', color: '#1890ff', textDecoration: 'none' }}>
-                            Quên mật khẩu?
-                          </a>
-                        </Col>
-                      </Row>
-                    )}
-
-                    <Button
-                      type="primary"
-                      size="large"
-                      style={{
-                        width: '100%',
-                        height: isRegister ? '48px' : '52px',
-                        borderRadius: isRegister ? '10px' : '12px',
-                        fontSize: isRegister ? '15px' : '16px',
-                        fontWeight: '600',
-                        background: '#1890ff',
-                        border: 'none',
-                        boxShadow: 'none',
-                        marginTop: isRegister ? '20px' : '0',
-                      }}
+                    <Form.Item
+                      label={
+                        <span style={{ fontSize: '15px', fontWeight: '500', color: '#000' }}>
+                          Mật khẩu
+                        </span>
+                      }
+                      name="password"
+                      rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
+                      style={{ marginBottom: '24px' }}
                     >
-                      {isRegister ? 'Đăng ký' : 'Đăng nhập'}
-                    </Button>
-                  </Col>
-                </Row>
+                      <Input.Password
+                        size="large"
+                        placeholder="Mật khẩu"
+                        style={{
+                          borderRadius: '12px',
+                          height: '52px',
+                          fontSize: '16px',
+                          border: '1px solid #d9d9d9',
+                          backgroundColor: '#fafafa',
+                        }}
+                      />
+                    </Form.Item>
+
+                    <Row justify="space-between" align="middle" style={{ marginBottom: '28px' }}>
+                      <Col>
+                        <Form.Item name="remember" valuePropName="checked" style={{ marginBottom: 0 }}>
+                          <Checkbox style={{ fontSize: '14px' }}>Nhớ tôi</Checkbox>
+                        </Form.Item>
+                      </Col>
+                      <Col>
+                        <a href="#" style={{ fontSize: '14px', color: '#1890ff', textDecoration: 'none' }}>
+                          Quên mật khẩu?
+                        </a>
+                      </Col>
+                    </Row>
+
+                    <Form.Item>
+                      <Button
+                        type="primary"
+                        htmlType="submit"
+                        size="large"
+                        style={{
+                          width: '100%',
+                          height: '52px',
+                          borderRadius: '12px',
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          background: '#1890ff',
+                          border: 'none',
+                          boxShadow: 'none',
+                        }}
+                      >
+                        Đăng nhập
+                      </Button>
+                    </Form.Item>
+                  </Form>
+                )}
+
+                {/* Register Form */}
+                {isRegister && (
+                  <Form
+                    form={registerForm}
+                    onFinish={onRegisterFinish}
+                    layout="vertical"
+                    requiredMark={false}
+                  >
+                    <Form.Item
+                      label={
+                        <span style={{ fontSize: '14px', fontWeight: '500', color: '#000' }}>
+                          Username
+                        </span>
+                      }
+                      name="username"
+                      rules={[{ required: true, message: 'Vui lòng nhập username!' }]}
+                      style={{ marginBottom: '20px' }}
+                    >
+                      <Input
+                        size="large"
+                        placeholder="Username"
+                        style={{
+                          borderRadius: '10px',
+                          height: '48px',
+                          fontSize: '15px',
+                          border: '1px solid #d9d9d9',
+                          backgroundColor: '#fafafa',
+                        }}
+                      />
+                    </Form.Item>
+
+                    <Form.Item
+                      label={
+                        <span style={{ fontSize: '14px', fontWeight: '500', color: '#000' }}>
+                          Email
+                        </span>
+                      }
+                      name="email"
+                      rules={[
+                        { required: true, message: 'Vui lòng nhập email!' },
+                        { type: 'email', message: 'Email không hợp lệ!' }
+                      ]}
+                      style={{ marginBottom: '20px' }}
+                    >
+                      <Input
+                        size="large"
+                        placeholder="Email"
+                        type="email"
+                        style={{
+                          borderRadius: '10px',
+                          height: '48px',
+                          fontSize: '15px',
+                          border: '1px solid #d9d9d9',
+                          backgroundColor: '#fafafa',
+                        }}
+                      />
+                    </Form.Item>
+
+                    <Form.Item
+                      label={
+                        <span style={{ fontSize: '14px', fontWeight: '500', color: '#000' }}>
+                          Mật khẩu
+                        </span>
+                      }
+                      name="password"
+                      rules={[
+                        { required: true, message: 'Vui lòng nhập mật khẩu!' },
+                        { min: 6, message: 'Mật khẩu phải có ít nhất 6 ký tự!' }
+                      ]}
+                      style={{ marginBottom: '20px' }}
+                    >
+                      <Input.Password
+                        size="large"
+                        placeholder="Mật khẩu"
+                        style={{
+                          borderRadius: '10px',
+                          height: '48px',
+                          fontSize: '15px',
+                          border: '1px solid #d9d9d9',
+                          backgroundColor: '#fafafa',
+                        }}
+                      />
+                    </Form.Item>
+
+                    <Form.Item
+                      label={
+                        <span style={{ fontSize: '14px', fontWeight: '500', color: '#000' }}>
+                          Xác nhận mật khẩu
+                        </span>
+                      }
+                      name="confirmPassword"
+                      dependencies={['password']}
+                      rules={[
+                        { required: true, message: 'Vui lòng xác nhận mật khẩu!' },
+                        ({ getFieldValue }) => ({
+                          validator(_, value) {
+                            if (!value || getFieldValue('password') === value) {
+                              return Promise.resolve()
+                            }
+                            return Promise.reject(new Error('Mật khẩu xác nhận không khớp!'))
+                          },
+                        }),
+                      ]}
+                      style={{ marginBottom: '20px' }}
+                    >
+                      <Input.Password
+                        size="large"
+                        placeholder="Xác nhận mật khẩu"
+                        style={{
+                          borderRadius: '10px',
+                          height: '48px',
+                          fontSize: '15px',
+                          border: '1px solid #d9d9d9',
+                          backgroundColor: '#fafafa',
+                        }}
+                      />
+                    </Form.Item>
+
+                    <Form.Item style={{ marginTop: '20px' }}>
+                      <Button
+                        type="primary"
+                        htmlType="submit"
+                        size="large"
+                        style={{
+                          width: '100%',
+                          height: '48px',
+                          borderRadius: '10px',
+                          fontSize: '15px',
+                          fontWeight: '600',
+                          background: '#1890ff',
+                          border: 'none',
+                          boxShadow: 'none',
+                        }}
+                      >
+                        Đăng ký
+                      </Button>
+                    </Form.Item>
+                  </Form>
+                )}
               </Col>
             </Row>
           </div>
