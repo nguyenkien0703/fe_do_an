@@ -299,32 +299,30 @@ export const WorkspaceLogin = () => {
                       width: '100%',
                       height: '60px',
                       borderRadius: '16px',
-                      border: '2px solid #e5e7eb',
+                      border: '1px solid #e8f0fe',
                       marginBottom: '32px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       gap: '12px',
                       fontSize: '16px',
-                      fontWeight: '600',
-                      color: '#374151',
-                      backgroundColor: '#ffffff',
-                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.04)',
+                      fontWeight: '500',
+                      color: '#4285f4',
+                      backgroundColor: '#f8f9ff',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
                       transition: 'all 0.3s ease',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)'
+                      e.currentTarget.style.transform = 'translateY(-1px)'
                       e.currentTarget.style.boxShadow =
-                        '0 8px 20px rgba(0, 0, 0, 0.08)'
-                      e.currentTarget.style.backgroundColor = '#f9fafb'
-                      e.currentTarget.style.borderColor = '#d1d5db'
+                        '0 4px 12px rgba(66, 133, 244, 0.15)'
+                      e.currentTarget.style.backgroundColor = '#f0f4ff'
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)'
                       e.currentTarget.style.boxShadow =
-                        '0 4px 8px rgba(0, 0, 0, 0.04)'
-                      e.currentTarget.style.backgroundColor = '#ffffff'
-                      e.currentTarget.style.borderColor = '#e5e7eb'
+                        '0 2px 4px rgba(0, 0, 0, 0.05)'
+                      e.currentTarget.style.backgroundColor = '#f8f9ff'
                     }}
                     icon={
                       <svg width="20" height="20" viewBox="0 0 24 24">
