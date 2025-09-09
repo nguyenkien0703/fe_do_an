@@ -7,9 +7,18 @@ interface AuthParams {
 
 export interface CreateRegisterBody {}
 
+export interface CreateLoginBody {
+    usernameOrEmail: string
+    password: string
+    visitorId: string    // FingerprintJS unique ID
+      browser: string      // Chrome, Firefox, Safari, Edge
+      os: string          // Windows, macOS, Linux, Android, iOS
+      ip: string          // Public IP address
+    remember: boolean
+}
 const authApi = {
-  async signIn(params: AuthParams) {
-    return instance.post(`/auth/login`, params).then((res: any) => res.data)
+  async signIn(body: CreateLoginBody) {
+    return instance.post(`/auth/login`, body).then((res: any) => res.data)
   },
   async refresh(headers: any) {
     return clientNoneAuth

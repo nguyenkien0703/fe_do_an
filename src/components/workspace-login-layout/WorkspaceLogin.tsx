@@ -4,10 +4,15 @@ import { LogoSection } from './LogoSection'
 import { AccountHistory } from './AccountHistory'
 import {  LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
-import { EActionStatus } from '@/stores/type'
+import { EActionStatus, FetchStatus } from '@/stores/type'
 import { useForm } from 'antd/es/form/Form'
 import { useTranslations } from 'next-intl'
-
+import { useMutation } from '@tanstack/react-query'
+import authApi from '@/api/helper/auth'
+import { notification } from 'antd'
+import { useAuthLogin } from '@/stores/auth/hooks'
+import { setAccessToken, setRefreshToken } from '@/utils/tokenCookies'
+import { useRouter } from 'next/navigation'
 
 
 export interface ILoginForm {
@@ -32,20 +37,57 @@ export interface IRegisterForm {
 
 
 export const WorkspaceLogin = () => {
+  const router = useRouter()
   const [isRegister, setIsRegister] = useState(false)
   const t = useTranslations()
+  const {authState, logoutAction, resetStatusAction, updateCurrentUserInfo} = useAuthLogin()
   const [formLogin] = useForm<ILoginForm>()
   const [formRegister] = useForm<IRegisterForm>()
 
   const [statusLogin, setStatusLogin] = useState(EActionStatus.Idle)
-  const [statusRegister, setStatusRegister] = useState(EActionStatus.Idle)
-  const onLoginFinish = (values: ILoginForm) => {
-    console.log('Login values:', values)
+  const [statusRegister, setStatusRegister] = useState(false)
+
+
+  const {mutateAsync: login, isPending: isLoginLoading} = useMutation({
+    mutationFn: (data: ILoginForm) => authApi.signIn(data),
+    onSuccess: (response: any) => {
+      console.log('response.data.user-----', response.data.user)
+      updateCurrentUserInfo(response.data.user)
+      setAccessToken(response.data.accessToken)
+      setRefreshToken(response.data.refreshToken)
+      router.push('/home')
+      notification.success({
+        message: t('LOGIN_SUCCESS'),
+        description: t('LOGIN_SUCCESS_DESCRIPTION'),
+        duration: 3,
+      })
+    },
+    onError: (error: any)=> {
+      console.log('error login-----', error)
+      logoutAction()
+      notification.error({
+        message:t('ERROR_LOGIN'), 
+        description:  error?.response?.data?.message || error?.message || 'Something wrong, try again!',
+        duration: 3,
+      })
+    }
+  })
+  console.log('authState user -----', authState.userData)
+  console.log('isLoginLoading line 67-----', isLoginLoading)
+
+  const onLoginFinish = async (values: ILoginForm) => {
+    try {
+      await login(values)
+      console.log('Login success:', values)
+    } catch (error) {
+      console.error('Login failed:', error)
+    }
   }
 
   const onRegisterFinish = (values: IRegisterForm) => {
     console.log('Register values:', values)
   }
+
 
   return (
     <div style={{ height: '100vh', position: 'relative' }}>
@@ -137,9 +179,9 @@ export const WorkspaceLogin = () => {
                 </div>
 
                 {!isRegister ? (
-                  <LoginForm onFinish={onLoginFinish}  isLoginLoading={statusLogin === EActionStatus.Pending} form={formLogin}/>
+                  <LoginForm onFinish={onLoginFinish}  isLoginLoading={isLoginLoading} form={formLogin}/>
                 ) : (
-                  <RegisterForm onFinish={onRegisterFinish} isRegisterLoading = {statusRegister === EActionStatus.Pending} form={formRegister}/>
+                  <RegisterForm onFinish={onRegisterFinish} isRegisterLoading={statusRegister=== true} form={formRegister}/>
                 )}
               </Col>
             </Row>

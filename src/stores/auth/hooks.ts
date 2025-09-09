@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { RootState, useAppDispatch, useAppSelector } from ".."
-import { resetStatus, signOut } from "./slice"
-import { IAuthState } from "./type"
+import { currentUser, resetStatus, signOut } from "./slice"
+import { IAccount, IAuthState } from "./type"
 
 
 
@@ -9,6 +9,7 @@ type AuthLoginType = {
     authState: IAuthState
     logoutAction: () => void
     resetStatusAction: () => void
+    updateCurrentUserInfo: (userData: IAccount | null) => void
 }
 
 
@@ -26,11 +27,16 @@ export const useAuthLogin = (): AuthLoginType=> {
         dispatch(resetStatus())
     }, [dispatch])
 
+    const updateCurrentUserInfo = useCallback((userData: IAccount | null) => {
+        dispatch(currentUser(userData))
+    }, [dispatch])
+
 
     return {
         authState,
         logoutAction, 
-        resetStatusAction
+        resetStatusAction,
+        updateCurrentUserInfo
     }
 }
 

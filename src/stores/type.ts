@@ -23,3 +23,10 @@ export interface FetchError {
   errorCode: string
   errorMessage: string
 }
+
+
+
+export enum FetchStatus {
+  True = 'true',
+  False = 'false'
+}
