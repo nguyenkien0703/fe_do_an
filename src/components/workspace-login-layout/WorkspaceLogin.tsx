@@ -15,6 +15,7 @@ import { useAuthLogin } from '@/stores/auth/hooks'
 import { setAccessToken, setRefreshToken } from '@/utils/tokenCookies'
 import { useRouter } from 'next/navigation'
 import { VerificationType } from '@/constant/verifycation-type'
+import LanguageSwitcher from '@/components/language-switcher'
 
 export interface IVerificationForm {
   code: string
@@ -157,6 +158,22 @@ export const WorkspaceLogin = () => {
 
   return (
     <div style={{ height: '100vh', position: 'relative' }}>
+      {/* Language Switcher in top-right corner */}
+      <div style={{ 
+        position: 'absolute', 
+        top: '20px', 
+        right: '20px', 
+        zIndex: 20,
+        background: 'rgba(255, 255, 255, 0.9)',
+        backdropFilter: 'blur(10px)',
+        borderRadius: '8px',
+        padding: '8px 12px',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        border: '1px solid rgba(0, 0, 0, 0.1)'
+      }}>
+        <LanguageSwitcher />
+      </div>
+
       <Row style={{ height: '100%' }}>
         <Col span={24} style={{ position: 'relative' }}>
           <LogoSection />
