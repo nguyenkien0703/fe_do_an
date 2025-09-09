@@ -6,14 +6,18 @@ import {  LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
 import { EActionStatus } from '@/stores/type'
 import { useForm } from 'antd/es/form/Form'
+import { useTranslations } from 'next-intl'
 
 
 
 export interface ILoginForm {
-
   usernameOrEmail: string
   password: string
-  deviceInfo: string
+  visitorId: string    // FingerprintJS unique ID
+    browser: string      // Chrome, Firefox, Safari, Edge
+    os: string          // Windows, macOS, Linux, Android, iOS
+    ip: string          // Public IP address
+  remember: boolean
 }
 
 
@@ -29,7 +33,7 @@ export interface IRegisterForm {
 
 export const WorkspaceLogin = () => {
   const [isRegister, setIsRegister] = useState(false)
-
+  const t = useTranslations()
   const [formLogin] = useForm<ILoginForm>()
   const [formRegister] = useForm<IRegisterForm>()
 
@@ -78,7 +82,7 @@ export const WorkspaceLogin = () => {
                       color: '#64748b',
                     }}
                   >
-                    {isRegister ? 'Đã có tài khoản ?' : 'Chưa có tài khoản ?'}{' '}
+                    {isRegister ? t('HAVE_ACC') : t('NOT_HAVE_ACC')}{' '}
                     <a
                       href="#"
                       style={{
@@ -100,7 +104,7 @@ export const WorkspaceLogin = () => {
                         setIsRegister(!isRegister)
                       }}
                     >
-                      {isRegister ? 'Đăng nhập' : 'Đăng kí'}
+                      {isRegister ? t('LOGIN') : t('REGISTER')}
                     </a>
                   </div>
                   <div
@@ -112,7 +116,7 @@ export const WorkspaceLogin = () => {
                       letterSpacing: '0.5px',
                     }}
                   >
-                    ✨ Chào mừng đến với Zono
+                    {t('WELCOME')}
                   </div>
                   <h1
                     style={{
@@ -128,7 +132,7 @@ export const WorkspaceLogin = () => {
                       letterSpacing: '-0.5px',
                     }}
                   >
-                    {isRegister ? 'Đăng ký' : 'Đăng nhập'}
+                    {isRegister ?  t('REGISTER'): t('LOGIN')}
                   </h1>
                 </div>
 

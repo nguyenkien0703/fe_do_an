@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Input, Checkbox, Form, Row, Col, Spin } from 'antd'
 import { useTranslations } from 'next-intl';
-import { FormInstance, useForm } from 'antd/es/form/Form'
+import { FormInstance, useForm, useWatch } from 'antd/es/form/Form'
 import { EActionStatus } from '@/stores/type';
 import { ILoginForm } from './WorkspaceLogin';
+import { getDeviceInfo } from '@/utils/deviceInfo';
 interface LoginFormProps {
   onFinish: (values: any) => void
   isLoginLoading: boolean
@@ -13,15 +14,44 @@ interface LoginFormProps {
 
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onFinish, isLoginLoading, form }) => {
-
+  const [submittable, setSubmittable] = useState(false)
+      // Watch all values
+      const values = useWatch([], form)
+      useEffect(() => {
+        form.validateFields({ validateOnly: true }).then(
+            () => {
+                setSubmittable(true)
+            },
+            () => {
+                setSubmittable(false)
+            },
+        )
+        // eslint-disable-next-line
+    }, [values])
+      
   const t = useTranslations();
+
+  const handleFormSubmit = async (values: Omit<ILoginForm, 'visitorId' | 'browser' | 'os' | 'ip'>) => {
+    const deviceInfoString = await getDeviceInfo()
+    const deviceInfo = JSON.parse(deviceInfoString)
+    
+    const loginData: ILoginForm = {
+      ...values,
+      visitorId: deviceInfo.visitorId,
+      browser: deviceInfo.browser,
+      os: deviceInfo.os,
+      ip: deviceInfo.ip
+    }
+    console.log('deviceInfo-----', deviceInfo)
+    onFinish(loginData)
+  }
   
 
   
   return (
     <Form
       form={form}
-      onFinish={onFinish}
+      onFinish={handleFormSubmit}
       layout="vertical"
       requiredMark={false}
     >
@@ -78,7 +108,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onFinish, isLoginLoading, 
           </svg>
         }
       >
-        Đăng nhập với Google
+        {t('LOGIN_WITH_GOOGLE')}
       </Button>
 
       <Form.Item
@@ -187,36 +217,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onFinish, isLoginLoading, 
       <Form.Item>
         <Spin delay={0} spinning={isLoginLoading}>
           <Button
-            type="primary"
+            type="default"
             htmlType="submit"
             size="large"
-            style={{
-              width: '100%',
-              height: '60px',
-              borderRadius: '16px',
-              fontSize: '16px',
-              fontWeight: '700',
-              background:
-                'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)',
-              border: 'none',
-              boxShadow: '0 8px 20px rgba(79, 70, 229, 0.25)',
-              transition: 'all 0.3s ease',
-              letterSpacing: '0.5px',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)'
-              e.currentTarget.style.boxShadow =
-                '0 12px 24px rgba(79, 70, 229, 0.35)'
-              e.currentTarget.style.background =
-                'linear-gradient(135deg, #3730a3 0%, #1e1b4b 100%)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow =
-                '0 8px 20px rgba(79, 70, 229, 0.25)'
-              e.currentTarget.style.background =
-                'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)'
-            }}
+            className="w-full text-white shadow-sm transition-opacity bg-[#3B87E5] disabled:opacity-60"
+
+            disabled={!submittable}
+            
           >
             {t('BTN_LOGIN')}
           </Button>
