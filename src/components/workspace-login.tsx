@@ -10,25 +10,29 @@ export const WorkspaceLogin = () => {
         <Col span={24} style={{ position: 'relative' }}>
           {/* Top White Section with Logo */}
           <Row style={{ height: '60%' }}>
-            <Col span={24} style={{ background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ textAlign: 'center' }}>
+            <Col span={24} style={{ background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', paddingLeft: '80px', paddingRight: '80px', overflow: 'visible' }}>
+              <div style={{ textAlign: 'left' }}>
                 {/* Zono Text Logo */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ marginBottom: '20px' }}>
                   <span
                     style={{
                       fontSize: '180px',
                       fontWeight: '900',
-                      color: '#4096ff',
+                      background: 'linear-gradient(135deg, #7c3aed 0%, #3b82f6 50%, #1d4ed8 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
                       lineHeight: '0.8',
                       fontFamily: 'system-ui, -apple-system, sans-serif',
-                      letterSpacing: '-8px',
+                      letterSpacing: '-2px',
+                      display: 'inline-block',
                     }}
                   >
                     Zono
                   </span>
                 </div>
                 {/* Small Z icon below */}
-                <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-start', marginLeft: '220px' }}>
                   <div
                     style={{
                       width: '60px',
