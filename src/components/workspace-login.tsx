@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Button, Input, Checkbox, Avatar } from 'antd'
-import { GoogleOutlined } from '@ant-design/icons'
+import { GoogleOutlined, CloseOutlined } from '@ant-design/icons'
 
 export const WorkspaceLogin = () => {
   return (
@@ -69,46 +69,84 @@ export const WorkspaceLogin = () => {
                 >
                   Đăng nhập với
                 </h3>
-                <Row gutter={20}>
+                <Row gutter={4}>
                   {[1, 2, 3].map((item) => (
-                    <Col key={item} xs={24} sm={8} md={8} lg={6} xl={6}>
+                    <Col key={item} xs={8} sm={8} md={6} lg={6} xl={6}>
                       <div
                         style={{
-                          background: 'rgba(255, 255, 255, 0.15)',
-                          backdropFilter: 'blur(10px)',
-                          borderRadius: '16px',
-                          padding: '20px',
+                          background: 'white',
+                          borderRadius: '12px',
+                          padding: '16px 12px',
                           display: 'flex',
+                          flexDirection: 'column',
                           alignItems: 'center',
-                          gap: '15px',
                           cursor: 'pointer',
                           transition: 'all 0.3s ease',
-                          border: '1px solid rgba(255, 255, 255, 0.2)',
+                          border: '1px solid rgba(255, 255, 255, 0.3)',
                           marginBottom: '16px',
+                          position: 'relative',
+                          width: '100%',
+                          maxWidth: '200px',
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)'
+                          e.currentTarget.style.transform = 'translateY(-2px)'
+                          e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)'
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'
+                          e.currentTarget.style.transform = 'translateY(0)'
+                          e.currentTarget.style.boxShadow = 'none'
                         }}
                       >
-                        <Avatar size={56} src="/api/placeholder/56/56" />
-                        <div>
+                        {/* Close button */}
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: '8px',
+                            right: '8px',
+                            width: '20px',
+                            height: '20px',
+                            borderRadius: '50%',
+                            background: '#f5f5f5',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#e6e6e6'
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = '#f5f5f5'
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation()
+                          }}
+                        >
+                          <CloseOutlined style={{ fontSize: '10px', color: '#999' }} />
+                        </div>
+
+                        {/* Avatar */}
+                        <Avatar size={48} src="/api/placeholder/48/48" style={{ marginBottom: '12px' }} />
+                        
+                        {/* User Info */}
+                        <div style={{ textAlign: 'center' }}>
                           <div
                             style={{
-                              color: 'white',
+                              color: '#000',
                               fontWeight: '600',
-                              fontSize: '16px',
-                              marginBottom: '4px',
+                              fontSize: '14px',
+                              marginBottom: '2px',
+                              lineHeight: '1.2',
                             }}
                           >
                             John peter
                           </div>
                           <div
                             style={{
-                              color: 'rgba(255, 255, 255, 0.8)',
-                              fontSize: '13px',
+                              color: '#999',
+                              fontSize: '12px',
+                              lineHeight: '1.2',
                             }}
                           >
                             Hoạt động 1 ngày trước
