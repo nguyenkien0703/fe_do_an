@@ -30,9 +30,7 @@ export interface ILoginForm {
 export interface IRegisterForm {
   username: string
   email: string
-  phoneNumber: string
   password: string
-  deviceInfo: string
 }
 
 
@@ -44,8 +42,6 @@ export const WorkspaceLogin = () => {
   const [formLogin] = useForm<ILoginForm>()
   const [formRegister] = useForm<IRegisterForm>()
 
-  const [statusLogin, setStatusLogin] = useState(EActionStatus.Idle)
-  const [statusRegister, setStatusRegister] = useState(false)
 
 
   const {mutateAsync: login, isPending: isLoginLoading} = useMutation({
@@ -72,8 +68,30 @@ export const WorkspaceLogin = () => {
       })
     }
   })
-  console.log('authState user -----', authState.userData)
-  console.log('isLoginLoading line 67-----', isLoginLoading)
+
+
+
+
+  const {mutateAsync: register, isPending: isRegisterLoading} = useMutation({
+    mutationFn: (data: IRegisterForm)=> authApi.register(data),
+    onSuccess: ()=> {
+      setIsRegister(false)
+      notification.success({
+        message: t('REGISTER_SUCCESS'),
+        description: t('REGISTER_SUCCESS_DESCRIPTION'),
+        duration: 3,
+      })
+    },
+    onError: (error: any)=> {
+      console.log('error when regiser----', error)
+      logoutAction()
+      notification.error({
+        message:t('ERROR_REGISTER'), 
+        description:  error?.response?.data?.message || error?.message || 'Something wrong, try again!',
+        duration: 3,
+      })
+    }
+  })
 
   const onLoginFinish = async (values: ILoginForm) => {
     try {
@@ -84,8 +102,16 @@ export const WorkspaceLogin = () => {
     }
   }
 
-  const onRegisterFinish = (values: IRegisterForm) => {
+  const onRegisterFinish =  async(values: IRegisterForm) => {
     console.log('Register values:', values)
+    try{
+      await register(values)
+      console.log('register success:::::', values)
+
+    }catch(error) {
+      console.error('register failed:', error)
+
+    }
   }
 
 
@@ -181,7 +207,7 @@ export const WorkspaceLogin = () => {
                 {!isRegister ? (
                   <LoginForm onFinish={onLoginFinish}  isLoginLoading={isLoginLoading} form={formLogin}/>
                 ) : (
-                  <RegisterForm onFinish={onRegisterFinish} isRegisterLoading={statusRegister=== true} form={formRegister}/>
+                  <RegisterForm onFinish={onRegisterFinish} isRegisterLoading={isRegisterLoading} form={formRegister}/>
                 )}
               </Col>
             </Row>

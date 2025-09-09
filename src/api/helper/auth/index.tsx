@@ -5,7 +5,11 @@ interface AuthParams {
   signature: string
 }
 
-export interface CreateRegisterBody {}
+export interface CreateRegisterBody {
+    username: string
+    email: string
+    password: string
+}
 
 export interface CreateLoginBody {
     usernameOrEmail: string

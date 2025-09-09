@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Input, Form, Spin, FormInstance } from 'antd'
 import { IRegisterForm } from './WorkspaceLogin'
+import { useWatch } from 'antd/es/form/Form'
+import { useTranslations } from 'next-intl'
 
 interface RegisterFormProps {
   onFinish: (values: any) => void
@@ -8,8 +10,23 @@ interface RegisterFormProps {
   form: FormInstance<IRegisterForm>
 }
 
-export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegisterLoading}) => {
-  const [form] = Form.useForm()
+export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegisterLoading, form}) => {
+  const t = useTranslations();
+  const [submittable, setSubmittable] = useState(false)
+  // Watch all values
+  const values = useWatch([], form)
+  useEffect(() => {
+    form.validateFields({ validateOnly: true }).then(
+        () => {
+            setSubmittable(true)
+        },
+        () => {
+            setSubmittable(false)
+        },
+    )
+    // eslint-disable-next-line
+}, [values])
+
 
   return (
     <Form
@@ -28,39 +45,19 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
               letterSpacing: '0.3px',
             }}
           >
-            Username
+            {t('USER_NAME')}
           </span>
         }
         name="username"
         rules={[
-          { required: true, message: 'Vui lòng nhập username!' },
+          { required: true, message: t('INVALID_USERNAME') },
         ]}
         style={{ marginBottom: '20px' }}
       >
         <Input
           size="large"
-          placeholder="Nhập username..."
-          style={{
-            borderRadius: '14px',
-            height: '52px',
-            fontSize: '15px',
-            border: '2px solid #e5e7eb',
-            backgroundColor: '#f9fafb',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.02)',
-          }}
-          onFocus={(e) => {
-            e.target.style.border = '2px solid #4f46e5'
-            e.target.style.backgroundColor = '#ffffff'
-            e.target.style.boxShadow =
-              '0 4px 12px rgba(79, 70, 229, 0.1)'
-          }}
-          onBlur={(e) => {
-            e.target.style.border = '2px solid #e5e7eb'
-            e.target.style.backgroundColor = '#f9fafb'
-            e.target.style.boxShadow =
-              '0 2px 4px rgba(0, 0, 0, 0.02)'
-          }}
+          placeholder={t('PLACE_HOLDER_YOUR_USER_NAME')}
+         
         />
       </Form.Item>
 
@@ -79,36 +76,16 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
         }
         name="email"
         rules={[
-          { required: true, message: 'Vui lòng nhập email!' },
-          { type: 'email', message: 'Email không hợp lệ!' },
+          { required: true, message: t('PLEASE_ENTER_YOUR_EMAIL') },
+          { type: 'email', message: 'INVALID_YOUR_EMAIL' },
         ]}
         style={{ marginBottom: '20px' }}
       >
         <Input
           size="large"
-          placeholder="Nhập email của bạn..."
+          placeholder={t('PLACE_HOLDER_YOUR_EMAIL')}
           type="email"
-          style={{
-            borderRadius: '14px',
-            height: '52px',
-            fontSize: '15px',
-            border: '2px solid #e5e7eb',
-            backgroundColor: '#f9fafb',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.02)',
-          }}
-          onFocus={(e) => {
-            e.target.style.border = '2px solid #4f46e5'
-            e.target.style.backgroundColor = '#ffffff'
-            e.target.style.boxShadow =
-              '0 4px 12px rgba(79, 70, 229, 0.1)'
-          }}
-          onBlur={(e) => {
-            e.target.style.border = '2px solid #e5e7eb'
-            e.target.style.backgroundColor = '#f9fafb'
-            e.target.style.boxShadow =
-              '0 2px 4px rgba(0, 0, 0, 0.02)'
-          }}
+          
         />
       </Form.Item>
 
@@ -122,43 +99,23 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
               letterSpacing: '0.3px',
             }}
           >
-            Mật khẩu
+         {t('PASSWORD')}
           </span>
         }
         name="password"
         rules={[
-          { required: true, message: 'Vui lòng nhập mật khẩu!' },
+          { required: true,  message: t('INVALID_PASSWORD'), },
           {
             min: 6,
-            message: 'Mật khẩu phải có ít nhất 6 ký tự!',
+            message: t('INVALID_PASSWORD_LENGTH'),
           },
         ]}
         style={{ marginBottom: '20px' }}
       >
         <Input.Password
           size="large"
-          placeholder="Nhập mật khẩu..."
-          style={{
-            borderRadius: '14px',
-            height: '52px',
-            fontSize: '15px',
-            border: '2px solid #e5e7eb',
-            backgroundColor: '#f9fafb',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.02)',
-          }}
-          onFocus={(e) => {
-            e.target.style.border = '2px solid #4f46e5'
-            e.target.style.backgroundColor = '#ffffff'
-            e.target.style.boxShadow =
-              '0 4px 12px rgba(79, 70, 229, 0.1)'
-          }}
-          onBlur={(e) => {
-            e.target.style.border = '2px solid #e5e7eb'
-            e.target.style.backgroundColor = '#f9fafb'
-            e.target.style.boxShadow =
-              '0 2px 4px rgba(0, 0, 0, 0.02)'
-          }}
+          placeholder={t('PLACE_HOLDER_PASSWORD')}
+          maxLength={50}
         />
       </Form.Item>
 
@@ -172,7 +129,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
               letterSpacing: '0.3px',
             }}
           >
-            Xác nhận mật khẩu
+            {t("CONFIRM_PASSWORD")}
           </span>
         }
         name="confirmPassword"
@@ -180,7 +137,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
         rules={[
           {
             required: true,
-            message: 'Vui lòng xác nhận mật khẩu!',
+            message: t('PLEASE_CONFIRM_PASSWORD'),
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
@@ -188,7 +145,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
                 return Promise.resolve()
               }
               return Promise.reject(
-                new Error('Mật khẩu xác nhận không khớp!'),
+                new Error(t('NOT_MATCH_PASSWORD')),
               )
             },
           }),
@@ -197,66 +154,23 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
       >
         <Input.Password
           size="large"
-          placeholder="Xác nhận mật khẩu..."
-          style={{
-            borderRadius: '14px',
-            height: '52px',
-            fontSize: '15px',
-            border: '2px solid #e5e7eb',
-            backgroundColor: '#f9fafb',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.02)',
-          }}
-          onFocus={(e) => {
-            e.target.style.border = '2px solid #4f46e5'
-            e.target.style.backgroundColor = '#ffffff'
-            e.target.style.boxShadow =
-              '0 4px 12px rgba(79, 70, 229, 0.1)'
-          }}
-          onBlur={(e) => {
-            e.target.style.border = '2px solid #e5e7eb'
-            e.target.style.backgroundColor = '#f9fafb'
-            e.target.style.boxShadow =
-              '0 2px 4px rgba(0, 0, 0, 0.02)'
-          }}
+          placeholder={t('PLEASE_CONFIRM_PASSWORD')}
+          maxLength={50}
+          
         />
       </Form.Item>
 
-      <Form.Item style={{ marginTop: '20px' }}>
+      <Form.Item>
         <Spin delay={0} spinning={isRegisterLoading}>
           <Button
-            type="primary"
-            htmlType="submit"
-            size="large"
-            style={{
-              width: '100%',
-              height: '56px',
-              borderRadius: '14px',
-              fontSize: '16px',
-              fontWeight: '700',
-              background:
-                'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)',
-              border: 'none',
-              boxShadow: '0 8px 20px rgba(79, 70, 229, 0.25)',
-              transition: 'all 0.3s ease',
-              letterSpacing: '0.5px',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)'
-              e.currentTarget.style.boxShadow =
-                '0 12px 24px rgba(79, 70, 229, 0.35)'
-              e.currentTarget.style.background =
-                'linear-gradient(135deg, #3730a3 0%, #1e1b4b 100%)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow =
-                '0 8px 20px rgba(79, 70, 229, 0.25)'
-              e.currentTarget.style.background =
-                'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)'
-            }}
+           type="default"
+           htmlType="submit"
+           size="large"
+           className="w-full text-white shadow-sm transition-opacity bg-[#3B87E5] disabled:opacity-60"
+
+           disabled={!submittable}
           >
-            ✨ Đăng ký
+            {t('BTN_REGISTER')}
           </Button>
 
         </Spin>
