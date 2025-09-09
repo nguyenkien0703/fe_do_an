@@ -50,13 +50,19 @@ export const viewport = {
   initialScale: 1.0
 };
 
+export function generateStaticParams() {
+  return [{ locale: 'vi' }, { locale: 'en' }];
+}
+
 export default async function RootLayout({
-  children
+  children,
+  params: { locale }
 }: {
   children: ReactNode;
+  params: {
+    locale: string;
+  };
 }) {
-  const locale = 'vi'; // Default to VietNamese
-  
   let messages;
   try {
     messages = (await import(`../../locales/${locale}.json`)).default;
@@ -69,25 +75,56 @@ export default async function RootLayout({
       lang={locale}
       className="scroll-smooth"
     >
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://ai-cms.alex-defikit.workers.dev/styling.css"
-        />
-        <script src="https://ai-cms.alex-defikit.workers.dev/widget.js"></script>
-      </head>
-
       <body className={roboto.className}>
-        <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-        <noscript>You need to enable JavaScript to run this app.</noscript>
         <GlobalProvider
           locale={locale}
           messages={messages}
         >
-          <WorkspaceLayout>{children}</WorkspaceLayout>
+          {children}
         </GlobalProvider>
       </body>
     </html>
   );
 }
+
+// export default async function RootLayout({
+//   children
+// }: {
+//   children: ReactNode;
+// }) {
+//   const locale = 'vi'; // Default to VietNamese
+
+//   let messages;
+//   try {
+//     messages = (await import(`../../locales/${locale}.json`)).default;
+//   } catch (error) {
+//     notFound();
+//   }
+
+//   return (
+//     <html
+//       lang={locale}
+//       className="scroll-smooth"
+//     >
+//       <head>
+//         <link
+//           rel="stylesheet"
+//           href="https://ai-cms.alex-defikit.workers.dev/styling.css"
+//         />
+//         <script src="https://ai-cms.alex-defikit.workers.dev/widget.js"></script>
+//       </head>
+
+//       <body className={roboto.className}>
+//         <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+//         <noscript>You need to enable JavaScript to run this app.</noscript>
+//         <GlobalProvider
+//           locale={locale}
+//           messages={messages}
+//         >
+//           <WorkspaceLayout>{children}</WorkspaceLayout>
+//         </GlobalProvider>
+//       </body>
+//     </html>
+//   );
+// }

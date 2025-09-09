@@ -27,7 +27,8 @@ export default function Home() {
         avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=TyLiphu',
         time: '22 Aug at 7:15 PM'
       },
-      content: 'Just finished an amazing project! Excited to share it with you all soon. 🚀',
+      content:
+        'Just finished an amazing project! Excited to share it with you all soon. 🚀',
       images: [
         'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop'
       ],
@@ -38,12 +39,15 @@ export default function Home() {
   ];
 
   return (
-    <div className="max-w-2xl mx-auto py-6">
+    <div className="mx-auto max-w-2xl py-6">
       <StoryBar />
       <CreatePost />
       <div className="space-y-6">
         {samplePosts.map((post) => (
-          <Post key={post.id} {...post} />
+          <Post
+            key={post.id}
+            {...post}
+          />
         ))}
       </div>
     </div>
