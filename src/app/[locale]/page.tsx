@@ -2,7 +2,10 @@
 // import CreatePost from '@/components/create-post';
 // import Post from '@/components/post';
 'use client'
-import WorkspaceLogin from '@/components/workspace-login'
+
+import WorkspaceLogin from "@/components/workspace-login-layout/WorkspaceLogin"
+
+// import WorkspaceLogin from '@/components/workspace-login'
 
 // export default function Home() {
 //   const samplePosts = [
