@@ -52,6 +52,8 @@ export const WorkspaceLogin = () => {
   const [formVerification] = useForm<IVerificationForm>()
 
 
+  console.log(authState.userData)
+
 
   const {mutateAsync: login, isPending: isLoginLoading} = useMutation({
     mutationFn: (data: ILoginForm) => authApi.signIn(data),
