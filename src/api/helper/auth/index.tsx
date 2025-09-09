@@ -1,4 +1,5 @@
 import instance, { clientNoneAuth } from '@/api/instances'
+import { VerificationType } from '@/constant/verifycation-type'
 
 interface AuthParams {
   address: string
@@ -20,6 +21,12 @@ export interface CreateLoginBody {
       ip: string          // Public IP address
     remember: boolean
 }
+
+export interface VerifyEmailBody {
+  code: string
+  type: VerificationType.EMAIL_VERIFICATION
+
+}
 const authApi = {
   async signIn(body: CreateLoginBody) {
     return instance.post(`/auth/login`, body).then((res: any) => res.data)
@@ -34,6 +41,10 @@ const authApi = {
 
   async register(body: CreateRegisterBody): Promise<any> {
     return instance.post(`/auth/register`, body).then((res) => res.data)
+  },
+
+  async verifyEmail(body: VerifyEmailBody): Promise<any> {
+    return instance.post(`/auth/verify-email`, body).then((res) => res.data)
   },
 }
 

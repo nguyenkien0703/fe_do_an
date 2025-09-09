@@ -4,6 +4,7 @@ import { LogoSection } from './LogoSection'
 import { AccountHistory } from './AccountHistory'
 import {  LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
+import { VerificationForm } from './VerificationForm'
 import { EActionStatus, FetchStatus } from '@/stores/type'
 import { useForm } from 'antd/es/form/Form'
 import { useTranslations } from 'next-intl'
@@ -13,7 +14,12 @@ import { notification } from 'antd'
 import { useAuthLogin } from '@/stores/auth/hooks'
 import { setAccessToken, setRefreshToken } from '@/utils/tokenCookies'
 import { useRouter } from 'next/navigation'
+import { VerificationType } from '@/constant/verifycation-type'
 
+export interface IVerificationForm {
+  code: string
+  type: VerificationType.EMAIL_VERIFICATION
+}
 
 export interface ILoginForm {
   usernameOrEmail: string
@@ -37,10 +43,13 @@ export interface IRegisterForm {
 export const WorkspaceLogin = () => {
   const router = useRouter()
   const [isRegister, setIsRegister] = useState(false)
+  const [isVerification, setIsVerification] = useState(false)
+  const [userEmail, setUserEmail] = useState('')
   const t = useTranslations()
   const {authState, logoutAction, resetStatusAction, updateCurrentUserInfo} = useAuthLogin()
   const [formLogin] = useForm<ILoginForm>()
   const [formRegister] = useForm<IRegisterForm>()
+  const [formVerification] = useForm<IVerificationForm>()
 
 
 
@@ -74,11 +83,13 @@ export const WorkspaceLogin = () => {
 
   const {mutateAsync: register, isPending: isRegisterLoading} = useMutation({
     mutationFn: (data: IRegisterForm)=> authApi.register(data),
-    onSuccess: ()=> {
+    onSuccess: (response: any)=> {
+      setUserEmail(response.data.user.email)
       setIsRegister(false)
+      setIsVerification(true)
       notification.success({
         message: t('REGISTER_SUCCESS'),
-        description: t('REGISTER_SUCCESS_DESCRIPTION'),
+        description: 'Mã xác thực đã được gửi đến email của bạn',
         duration: 3,
       })
     },
@@ -102,6 +113,27 @@ export const WorkspaceLogin = () => {
     }
   }
 
+  const {mutateAsync: verifyEmail, isPending: isVerificationLoading} = useMutation({
+    mutationFn: (data: IVerificationForm) => authApi.verifyEmail(data),
+    onSuccess: () => {
+      setIsVerification(false)
+      setIsRegister(false)
+      notification.success({
+        message: t('VERIFY_EMAIL_AFTER_REGISTER_SUCCESS'),
+        description: 'VERIFY_EMAIL_AFTER_REGISTER_SUCCESS_DESC',
+        duration: 3,
+      })
+    },
+    onError: (error: any) => {
+      notification.error({
+        message: t('ERROR_VERIFY_EMAIL_AFTER_REGISTER'),
+        description: error?.response?.data?.message || error?.message || t('WRONG_CODE'),
+        duration: 3,
+      })
+    }
+  })
+
+ 
   const onRegisterFinish =  async(values: IRegisterForm) => {
     console.log('Register values:', values)
     try{
@@ -111,6 +143,15 @@ export const WorkspaceLogin = () => {
     }catch(error) {
       console.error('register failed:', error)
 
+    }
+  }
+
+  const onVerificationFinish = async (values: IVerificationForm) => {
+    try {
+      await verifyEmail(values)
+      console.log('Verification success:', values)
+    } catch (error) {
+      console.error('Verification failed:', error)
     }
   }
 
@@ -150,30 +191,34 @@ export const WorkspaceLogin = () => {
                       color: '#64748b',
                     }}
                   >
-                    {isRegister ? t('HAVE_ACC') : t('NOT_HAVE_ACC')}{' '}
-                    <a
-                      href="#"
-                      style={{
-                        color: '#4f46e5',
-                        textDecoration: 'none',
-                        fontWeight: '500',
-                        transition: 'all 0.2s ease',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.color = '#3730a3'
-                        e.currentTarget.style.textDecoration = 'underline'
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.color = '#4f46e5'
-                        e.currentTarget.style.textDecoration = 'none'
-                      }}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        setIsRegister(!isRegister)
-                      }}
-                    >
-                      {isRegister ? t('LOGIN') : t('REGISTER')}
-                    </a>
+                    {!isVerification && (
+                      <>
+                        {isRegister ? t('HAVE_ACC') : t('NOT_HAVE_ACC')}{' '}
+                        <a
+                          href="#"
+                          style={{
+                            color: '#4f46e5',
+                            textDecoration: 'none',
+                            fontWeight: '500',
+                            transition: 'all 0.2s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.color = '#3730a3'
+                            e.currentTarget.style.textDecoration = 'underline'
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.color = '#4f46e5'
+                            e.currentTarget.style.textDecoration = 'none'
+                          }}
+                          onClick={(e) => {
+                            e.preventDefault()
+                            setIsRegister(!isRegister)
+                          }}
+                        >
+                          {isRegister ? t('LOGIN') : t('REGISTER')}
+                        </a>
+                      </>
+                    )}
                   </div>
                   <div
                     style={{
@@ -188,7 +233,7 @@ export const WorkspaceLogin = () => {
                   </div>
                   <h1
                     style={{
-                      fontSize: isRegister ? '36px' : '42px',
+                      fontSize: isVerification ? '28px' : isRegister ? '36px' : '42px',
                       fontWeight: '700',
                       background:
                         'linear-gradient(135deg, #1e293b 0%, #4f46e5 100%)',
@@ -200,11 +245,18 @@ export const WorkspaceLogin = () => {
                       letterSpacing: '-0.5px',
                     }}
                   >
-                    {isRegister ?  t('REGISTER'): t('LOGIN')}
+                    {isVerification ? t('VERIFY') : isRegister ? t('REGISTER') : t('LOGIN')}
                   </h1>
                 </div>
 
-                {!isRegister ? (
+                {isVerification ? (
+                  <VerificationForm 
+                    onFinish={onVerificationFinish}  
+                    isVerificationLoading={isVerificationLoading} 
+                    form={formVerification}
+                    userEmail={userEmail}
+                  />
+                ) : !isRegister ? (
                   <LoginForm onFinish={onLoginFinish}  isLoginLoading={isLoginLoading} form={formLogin}/>
                 ) : (
                   <RegisterForm onFinish={onRegisterFinish} isRegisterLoading={isRegisterLoading} form={formRegister}/>
