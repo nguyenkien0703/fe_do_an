@@ -19,13 +19,16 @@ interface ProvidersProps {
 const GlobalProvider: FC<ProvidersProps> = ({ locale, messages, children }) => {
   // init state
   const store = useStore(undefined)
-  const [queryClient] = useState(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000,
-      },
-    },
-  }))
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 60 * 1000,
+          },
+        },
+      }),
+  )
 
   return (
     <ReduxProvider store={store}>

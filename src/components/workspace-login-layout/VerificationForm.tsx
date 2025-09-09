@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react'
 import { IVerificationForm } from './WorkspaceLogin'
 import { VerificationType } from '@/constant/verifycation-type'
 
-
 interface VerificationFormProps {
   onFinish: (values: IVerificationForm) => void
   isVerificationLoading: boolean
@@ -13,15 +12,15 @@ interface VerificationFormProps {
   userEmail: string
 }
 
-export const VerificationForm: React.FC<VerificationFormProps> = ({ 
-  onFinish, 
-  isVerificationLoading, 
+export const VerificationForm: React.FC<VerificationFormProps> = ({
+  onFinish,
+  isVerificationLoading,
   form,
-  userEmail 
+  userEmail,
 }) => {
   const t = useTranslations()
   const [submittable, setSubmittable] = useState(false)
-  
+
   // Watch all values
   const values = useWatch([], form)
   useEffect(() => {
@@ -35,11 +34,12 @@ export const VerificationForm: React.FC<VerificationFormProps> = ({
     )
   }, [values, form])
 
-
-  const handleVerifyFormSubmit = async (values: Omit<IVerificationForm,'type'>)=> {
+  const handleVerifyFormSubmit = async (
+    values: Omit<IVerificationForm, 'type'>,
+  ) => {
     const verifyFormData: IVerificationForm = {
       ...values,
-      type: VerificationType.EMAIL_VERIFICATION
+      type: VerificationType.EMAIL_VERIFICATION,
     }
     console.log('verifyFormData::::', verifyFormData)
     onFinish(verifyFormData)
@@ -53,20 +53,24 @@ export const VerificationForm: React.FC<VerificationFormProps> = ({
       requiredMark={false}
     >
       <div style={{ marginBottom: '24px', textAlign: 'center' }}>
-        <p style={{ 
-          fontSize: '14px', 
-          color: '#64748b',
-          margin: 0,
-          lineHeight: '1.5'
-        }}>
+        <p
+          style={{
+            fontSize: '14px',
+            color: '#64748b',
+            margin: 0,
+            lineHeight: '1.5',
+          }}
+        >
           {t('WE_HAVE_SEND_CODE_TO_YOUR_EMAIL')}
         </p>
-        <p style={{ 
-          fontSize: '14px', 
-          color: '#1e293b',
-          fontWeight: '600',
-          margin: '4px 0 0 0'
-        }}>
+        <p
+          style={{
+            fontSize: '14px',
+            color: '#1e293b',
+            fontWeight: '600',
+            margin: '4px 0 0 0',
+          }}
+        >
           {userEmail}
         </p>
       </div>
@@ -87,10 +91,10 @@ export const VerificationForm: React.FC<VerificationFormProps> = ({
         name="code"
         rules={[
           { required: true, message: t('PLEASE_ENTER_CODE') },
-          { 
+          {
             pattern: /^[0-9]{6}$/,
-            message: t('INVALID_FORMAT_CODE')
-          }
+            message: t('INVALID_FORMAT_CODE'),
+          },
         ]}
         style={{ marginBottom: '32px' }}
       >
@@ -101,7 +105,7 @@ export const VerificationForm: React.FC<VerificationFormProps> = ({
           style={{
             textAlign: 'center',
             fontSize: '18px',
-            letterSpacing: '4px'
+            letterSpacing: '4px',
           }}
         />
       </Form.Item>
@@ -112,10 +116,10 @@ export const VerificationForm: React.FC<VerificationFormProps> = ({
             type="default"
             htmlType="submit"
             size="large"
-            className="w-full text-white shadow-sm transition-opacity bg-[#3B87E5] disabled:opacity-60"
+            className="w-full bg-[#3B87E5] text-white shadow-sm transition-opacity disabled:opacity-60"
             disabled={!submittable}
           >
-            {t("SEND_CODE")}
+            {t('SEND_CODE')}
           </Button>
         </Spin>
       </Form.Item>

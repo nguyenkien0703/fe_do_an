@@ -9,10 +9,7 @@ export interface IAuthState {
   errorCode: string
 }
 
-// export interface ILoginRequest {
-//     walletAddress: string
-//     signature: string
-// }
+
 
 export interface ILoginResponse {
   accessToken: string
@@ -27,6 +24,7 @@ export interface IAccount {
   phoneNumber: string
   status: UserStatus
   lastLoginAt: string
+  avatar?: string | null
 }
 
 export interface ILoginEmailRequest {

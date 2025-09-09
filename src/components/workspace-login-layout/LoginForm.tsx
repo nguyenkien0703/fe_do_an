@@ -1,53 +1,55 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Input, Checkbox, Form, Row, Col, Spin } from 'antd'
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 import { FormInstance, useForm, useWatch } from 'antd/es/form/Form'
-import { EActionStatus } from '@/stores/type';
-import { ILoginForm } from './WorkspaceLogin';
-import { getDeviceInfo } from '@/utils/deviceInfo';
+import { EActionStatus } from '@/stores/type'
+import { ILoginForm } from './WorkspaceLogin'
+import { getDeviceInfo } from '@/utils/deviceInfo'
 interface LoginFormProps {
   onFinish: (values: any) => void
   isLoginLoading: boolean
   form: FormInstance<ILoginForm>
 }
 
-
-
-export const LoginForm: React.FC<LoginFormProps> = ({ onFinish, isLoginLoading, form }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({
+  onFinish,
+  isLoginLoading,
+  form,
+}) => {
   const [submittable, setSubmittable] = useState(false)
-      // Watch all values
-      const values = useWatch([], form)
-      useEffect(() => {
-        form.validateFields({ validateOnly: true }).then(
-            () => {
-                setSubmittable(true)
-            },
-            () => {
-                setSubmittable(false)
-            },
-        )
-        // eslint-disable-next-line
-    }, [values])
-      
-  const t = useTranslations();
+  // Watch all values
+  const values = useWatch([], form)
+  useEffect(() => {
+    form.validateFields({ validateOnly: true }).then(
+      () => {
+        setSubmittable(true)
+      },
+      () => {
+        setSubmittable(false)
+      },
+    )
+    // eslint-disable-next-line
+  }, [values])
 
-  const handleFormSubmit = async (values: Omit<ILoginForm, 'visitorId' | 'browser' | 'os' | 'ip'>) => {
+  const t = useTranslations()
+
+  const handleFormSubmit = async (
+    values: Omit<ILoginForm, 'visitorId' | 'browser' | 'os' | 'ip'>,
+  ) => {
     const deviceInfoString = await getDeviceInfo()
     const deviceInfo = JSON.parse(deviceInfoString)
-    
+
     const loginData: ILoginForm = {
       ...values,
       visitorId: deviceInfo.visitorId,
       browser: deviceInfo.browser,
       os: deviceInfo.os,
-      ip: deviceInfo.ip
+      ip: deviceInfo.ip,
     }
     console.log('deviceInfo-----', deviceInfo)
     onFinish(loginData)
   }
-  
 
-  
   return (
     <Form
       form={form}
@@ -83,8 +85,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onFinish, isLoginLoading, 
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'translateY(0)'
-          e.currentTarget.style.boxShadow =
-            '0 2px 4px rgba(0, 0, 0, 0.05)'
+          e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.05)'
           e.currentTarget.style.backgroundColor = '#f8f9ff'
         }}
         icon={
@@ -128,7 +129,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onFinish, isLoginLoading, 
         rules={[
           {
             required: true,
-            message: t('INVALID_USERNAME_OR_EMAIL'), 
+            message: t('INVALID_USERNAME_OR_EMAIL'),
           },
         ]}
         className="mb-6"
@@ -150,21 +151,17 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onFinish, isLoginLoading, 
               letterSpacing: '0.3px',
             }}
           >
-          {t('PASSWORD')}
-            
+            {t('PASSWORD')}
           </span>
         }
         name="password"
-        rules={[
-          { required: true, message: t('INVALID_PASSWORD')},
-        ]}
+        rules={[{ required: true, message: t('INVALID_PASSWORD') }]}
         style={{ marginBottom: '24px' }}
       >
         <Input.Password
           size="large"
           placeholder={t('PLACE_HOLDER_PASSWORD')}
           maxLength={50}
-          
         />
       </Form.Item>
 
@@ -220,21 +217,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onFinish, isLoginLoading, 
             type="default"
             htmlType="submit"
             size="large"
-            className="w-full text-white shadow-sm transition-opacity bg-[#3B87E5] disabled:opacity-60"
-
+            className="w-full bg-[#3B87E5] text-white shadow-sm transition-opacity disabled:opacity-60"
             disabled={!submittable}
-            
           >
             {t('BTN_LOGIN')}
           </Button>
-          
         </Spin>
       </Form.Item>
-
-
-
-
-      
     </Form>
   )
 }

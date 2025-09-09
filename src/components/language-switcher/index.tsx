@@ -74,9 +74,9 @@ const LanguageSwitcher = () => {
       trigger={['click']}
       placement="bottomRight"
     >
-      <Space className="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded">
+      <Space className="cursor-pointer rounded px-2 py-1 hover:bg-gray-100">
         {getCurrentLanguageLabel()}
-        <DownOutlined className="text-gray-600 text-xs" />
+        <DownOutlined className="text-xs text-gray-600" />
       </Space>
     </Dropdown>
   )

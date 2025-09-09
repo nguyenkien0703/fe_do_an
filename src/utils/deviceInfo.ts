@@ -53,16 +53,16 @@ const getIP = async (): Promise<string> => {
 export const getDeviceInfo = async (): Promise<string> => {
   try {
     const [fp, ip] = await Promise.all([
-      getFingerprintAgent().then(agent => agent.get()),
-      getIP()
+      getFingerprintAgent().then((agent) => agent.get()),
+      getIP(),
     ])
-    
+
     const deviceInfo = {
       visitorId: fp.visitorId,
       browser: getBrowser(),
       os: getOS(),
       ip,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     }
 
     return JSON.stringify(deviceInfo)
@@ -74,7 +74,7 @@ export const getDeviceInfo = async (): Promise<string> => {
       os: getOS(),
       ip: 'Unknown',
       timestamp: new Date().toISOString(),
-      error: 'Failed to get fingerprint'
+      error: 'Failed to get fingerprint',
     })
   }
 }

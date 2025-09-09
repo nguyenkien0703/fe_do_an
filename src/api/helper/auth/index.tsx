@@ -7,25 +7,24 @@ interface AuthParams {
 }
 
 export interface CreateRegisterBody {
-    username: string
-    email: string
-    password: string
+  username: string
+  email: string
+  password: string
 }
 
 export interface CreateLoginBody {
-    usernameOrEmail: string
-    password: string
-    visitorId: string    // FingerprintJS unique ID
-      browser: string      // Chrome, Firefox, Safari, Edge
-      os: string          // Windows, macOS, Linux, Android, iOS
-      ip: string          // Public IP address
-    remember: boolean
+  usernameOrEmail: string
+  password: string
+  visitorId: string // FingerprintJS unique ID
+  browser: string // Chrome, Firefox, Safari, Edge
+  os: string // Windows, macOS, Linux, Android, iOS
+  ip: string // Public IP address
+  remember: boolean
 }
 
 export interface VerifyEmailBody {
   code: string
   type: VerificationType.EMAIL_VERIFICATION
-
 }
 const authApi = {
   async signIn(body: CreateLoginBody) {

@@ -24,9 +24,7 @@ export interface FetchError {
   errorMessage: string
 }
 
-
-
 export enum FetchStatus {
   True = 'true',
-  False = 'false'
+  False = 'false',
 }

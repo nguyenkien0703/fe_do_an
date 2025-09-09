@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Row, Col } from 'antd'
 import { LogoSection } from './LogoSection'
 import { AccountHistory } from './AccountHistory'
-import {  LoginForm } from './LoginForm'
+import { LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
 import { VerificationForm } from './VerificationForm'
 import { EActionStatus, FetchStatus } from '@/stores/type'
@@ -24,14 +24,12 @@ export interface IVerificationForm {
 export interface ILoginForm {
   usernameOrEmail: string
   password: string
-  visitorId: string    // FingerprintJS unique ID
-    browser: string      // Chrome, Firefox, Safari, Edge
-    os: string          // Windows, macOS, Linux, Android, iOS
-    ip: string          // Public IP address
+  visitorId: string // FingerprintJS unique ID
+  browser: string // Chrome, Firefox, Safari, Edge
+  os: string // Windows, macOS, Linux, Android, iOS
+  ip: string // Public IP address
   remember: boolean
 }
-
-
 
 export interface IRegisterForm {
   username: string
@@ -39,23 +37,21 @@ export interface IRegisterForm {
   password: string
 }
 
-
 export const WorkspaceLogin = () => {
   const router = useRouter()
   const [isRegister, setIsRegister] = useState(false)
   const [isVerification, setIsVerification] = useState(false)
   const [userEmail, setUserEmail] = useState('')
   const t = useTranslations()
-  const {authState, logoutAction, resetStatusAction, updateCurrentUserInfo} = useAuthLogin()
+  const { authState, logoutAction, resetStatusAction, updateCurrentUserInfo } =
+    useAuthLogin()
   const [formLogin] = useForm<ILoginForm>()
   const [formRegister] = useForm<IRegisterForm>()
   const [formVerification] = useForm<IVerificationForm>()
 
-
   console.log(authState.userData)
 
-
-  const {mutateAsync: login, isPending: isLoginLoading} = useMutation({
+  const { mutateAsync: login, isPending: isLoginLoading } = useMutation({
     mutationFn: (data: ILoginForm) => authApi.signIn(data),
     onSuccess: (response: any) => {
       console.log('response.data.user-----', response.data.user)
@@ -69,23 +65,23 @@ export const WorkspaceLogin = () => {
         duration: 3,
       })
     },
-    onError: (error: any)=> {
+    onError: (error: any) => {
       console.log('error login-----', error)
       logoutAction()
       notification.error({
-        message:t('ERROR_LOGIN'), 
-        description:  error?.response?.data?.message || error?.message || 'Something wrong, try again!',
+        message: t('ERROR_LOGIN'),
+        description:
+          error?.response?.data?.message ||
+          error?.message ||
+          'Something wrong, try again!',
         duration: 3,
       })
-    }
+    },
   })
 
-
-
-
-  const {mutateAsync: register, isPending: isRegisterLoading} = useMutation({
-    mutationFn: (data: IRegisterForm)=> authApi.register(data),
-    onSuccess: (response: any)=> {
+  const { mutateAsync: register, isPending: isRegisterLoading } = useMutation({
+    mutationFn: (data: IRegisterForm) => authApi.register(data),
+    onSuccess: (response: any) => {
       setUserEmail(response.data.user.email)
       setIsRegister(false)
       setIsVerification(true)
@@ -95,15 +91,18 @@ export const WorkspaceLogin = () => {
         duration: 3,
       })
     },
-    onError: (error: any)=> {
+    onError: (error: any) => {
       console.log('error when regiser----', error)
       logoutAction()
       notification.error({
-        message:t('ERROR_REGISTER'), 
-        description:  error?.response?.data?.message || error?.message || 'Something wrong, try again!',
+        message: t('ERROR_REGISTER'),
+        description:
+          error?.response?.data?.message ||
+          error?.message ||
+          'Something wrong, try again!',
         duration: 3,
       })
-    }
+    },
   })
 
   const onLoginFinish = async (values: ILoginForm) => {
@@ -115,36 +114,35 @@ export const WorkspaceLogin = () => {
     }
   }
 
-  const {mutateAsync: verifyEmail, isPending: isVerificationLoading} = useMutation({
-    mutationFn: (data: IVerificationForm) => authApi.verifyEmail(data),
-    onSuccess: () => {
-      setIsVerification(false)
-      setIsRegister(false)
-      notification.success({
-        message: t('VERIFY_EMAIL_AFTER_REGISTER_SUCCESS'),
-        description: 'VERIFY_EMAIL_AFTER_REGISTER_SUCCESS_DESC',
-        duration: 3,
-      })
-    },
-    onError: (error: any) => {
-      notification.error({
-        message: t('ERROR_VERIFY_EMAIL_AFTER_REGISTER'),
-        description: error?.response?.data?.message || error?.message || t('WRONG_CODE'),
-        duration: 3,
-      })
-    }
-  })
+  const { mutateAsync: verifyEmail, isPending: isVerificationLoading } =
+    useMutation({
+      mutationFn: (data: IVerificationForm) => authApi.verifyEmail(data),
+      onSuccess: () => {
+        setIsVerification(false)
+        setIsRegister(false)
+        notification.success({
+          message: t('VERIFY_EMAIL_AFTER_REGISTER_SUCCESS'),
+          description: 'VERIFY_EMAIL_AFTER_REGISTER_SUCCESS_DESC',
+          duration: 3,
+        })
+      },
+      onError: (error: any) => {
+        notification.error({
+          message: t('ERROR_VERIFY_EMAIL_AFTER_REGISTER'),
+          description:
+            error?.response?.data?.message || error?.message || t('WRONG_CODE'),
+          duration: 3,
+        })
+      },
+    })
 
- 
-  const onRegisterFinish =  async(values: IRegisterForm) => {
+  const onRegisterFinish = async (values: IRegisterForm) => {
     console.log('Register values:', values)
-    try{
+    try {
       await register(values)
       console.log('register success:::::', values)
-
-    }catch(error) {
+    } catch (error) {
       console.error('register failed:', error)
-
     }
   }
 
@@ -156,7 +154,6 @@ export const WorkspaceLogin = () => {
       console.error('Verification failed:', error)
     }
   }
-
 
   return (
     <div style={{ height: '100vh', position: 'relative' }}>
@@ -235,7 +232,11 @@ export const WorkspaceLogin = () => {
                   </div>
                   <h1
                     style={{
-                      fontSize: isVerification ? '28px' : isRegister ? '36px' : '42px',
+                      fontSize: isVerification
+                        ? '28px'
+                        : isRegister
+                          ? '36px'
+                          : '42px',
                       fontWeight: '700',
                       background:
                         'linear-gradient(135deg, #1e293b 0%, #4f46e5 100%)',
@@ -247,21 +248,33 @@ export const WorkspaceLogin = () => {
                       letterSpacing: '-0.5px',
                     }}
                   >
-                    {isVerification ? t('VERIFY') : isRegister ? t('REGISTER') : t('LOGIN')}
+                    {isVerification
+                      ? t('VERIFY')
+                      : isRegister
+                        ? t('REGISTER')
+                        : t('LOGIN')}
                   </h1>
                 </div>
 
                 {isVerification ? (
-                  <VerificationForm 
-                    onFinish={onVerificationFinish}  
-                    isVerificationLoading={isVerificationLoading} 
+                  <VerificationForm
+                    onFinish={onVerificationFinish}
+                    isVerificationLoading={isVerificationLoading}
                     form={formVerification}
                     userEmail={userEmail}
                   />
                 ) : !isRegister ? (
-                  <LoginForm onFinish={onLoginFinish}  isLoginLoading={isLoginLoading} form={formLogin}/>
+                  <LoginForm
+                    onFinish={onLoginFinish}
+                    isLoginLoading={isLoginLoading}
+                    form={formLogin}
+                  />
                 ) : (
-                  <RegisterForm onFinish={onRegisterFinish} isRegisterLoading={isRegisterLoading} form={formRegister}/>
+                  <RegisterForm
+                    onFinish={onRegisterFinish}
+                    isRegisterLoading={isRegisterLoading}
+                    form={formRegister}
+                  />
                 )}
               </Col>
             </Row>

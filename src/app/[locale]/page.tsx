@@ -3,7 +3,7 @@
 // import Post from '@/components/post';
 'use client'
 
-import WorkspaceLogin from "@/components/workspace-login-layout/WorkspaceLogin"
+import WorkspaceLogin from '@/components/workspace-login-layout/WorkspaceLogin'
 
 // import WorkspaceLogin from '@/components/workspace-login'
 

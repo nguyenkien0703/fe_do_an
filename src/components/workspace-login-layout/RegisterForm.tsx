@@ -10,23 +10,26 @@ interface RegisterFormProps {
   form: FormInstance<IRegisterForm>
 }
 
-export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegisterLoading, form}) => {
-  const t = useTranslations();
+export const RegisterForm: React.FC<RegisterFormProps> = ({
+  onFinish,
+  isRegisterLoading,
+  form,
+}) => {
+  const t = useTranslations()
   const [submittable, setSubmittable] = useState(false)
   // Watch all values
   const values = useWatch([], form)
   useEffect(() => {
     form.validateFields({ validateOnly: true }).then(
-        () => {
-            setSubmittable(true)
-        },
-        () => {
-            setSubmittable(false)
-        },
+      () => {
+        setSubmittable(true)
+      },
+      () => {
+        setSubmittable(false)
+      },
     )
     // eslint-disable-next-line
-}, [values])
-
+  }, [values])
 
   return (
     <Form
@@ -49,16 +52,10 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
           </span>
         }
         name="username"
-        rules={[
-          { required: true, message: t('INVALID_USERNAME') },
-        ]}
+        rules={[{ required: true, message: t('INVALID_USERNAME') }]}
         style={{ marginBottom: '20px' }}
       >
-        <Input
-          size="large"
-          placeholder={t('PLACE_HOLDER_YOUR_USER_NAME')}
-         
-        />
+        <Input size="large" placeholder={t('PLACE_HOLDER_YOUR_USER_NAME')} />
       </Form.Item>
 
       <Form.Item
@@ -85,7 +82,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
           size="large"
           placeholder={t('PLACE_HOLDER_YOUR_EMAIL')}
           type="email"
-          
         />
       </Form.Item>
 
@@ -99,12 +95,12 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
               letterSpacing: '0.3px',
             }}
           >
-         {t('PASSWORD')}
+            {t('PASSWORD')}
           </span>
         }
         name="password"
         rules={[
-          { required: true,  message: t('INVALID_PASSWORD'), },
+          { required: true, message: t('INVALID_PASSWORD') },
           {
             min: 6,
             message: t('INVALID_PASSWORD_LENGTH'),
@@ -129,7 +125,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
               letterSpacing: '0.3px',
             }}
           >
-            {t("CONFIRM_PASSWORD")}
+            {t('CONFIRM_PASSWORD')}
           </span>
         }
         name="confirmPassword"
@@ -144,9 +140,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
               if (!value || getFieldValue('password') === value) {
                 return Promise.resolve()
               }
-              return Promise.reject(
-                new Error(t('NOT_MATCH_PASSWORD')),
-              )
+              return Promise.reject(new Error(t('NOT_MATCH_PASSWORD')))
             },
           }),
         ]}
@@ -156,23 +150,20 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onFinish , isRegiste
           size="large"
           placeholder={t('PLEASE_CONFIRM_PASSWORD')}
           maxLength={50}
-          
         />
       </Form.Item>
 
       <Form.Item>
         <Spin delay={0} spinning={isRegisterLoading}>
           <Button
-           type="default"
-           htmlType="submit"
-           size="large"
-           className="w-full text-white shadow-sm transition-opacity bg-[#3B87E5] disabled:opacity-60"
-
-           disabled={!submittable}
+            type="default"
+            htmlType="submit"
+            size="large"
+            className="w-full bg-[#3B87E5] text-white shadow-sm transition-opacity disabled:opacity-60"
+            disabled={!submittable}
           >
             {t('BTN_REGISTER')}
           </Button>
-
         </Spin>
       </Form.Item>
     </Form>
