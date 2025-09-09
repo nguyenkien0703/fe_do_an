@@ -1,9 +1,6 @@
-import { Action } from '@reduxjs/toolkit'
+/* eslint-disable */
 
-export interface FetchError {
-  errorCode: string
-  errorMessage: string
-}
+import { Action } from '@reduxjs/toolkit'
 
 export interface IAction<Payload = any> extends Action {
   payload: Payload
@@ -14,4 +11,15 @@ export enum EActionStatus {
   Pending = 'pending',
   Succeeded = 'succeeded',
   Failed = 'failed',
+}
+
+export interface IGetAllDataQuery {
+  page: number
+  limit: number
+  keyword?: string
+}
+
+export interface FetchError {
+  errorCode: string
+  errorMessage: string
 }

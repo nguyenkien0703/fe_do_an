@@ -23,16 +23,19 @@ export const setAccessToken = (accessToken: string, options?: OptionsType) => {
     secure: true,
     sameSite: 'strict',
     maxAge: ACCESS_TOKEN_EXPIRED_DATE,
-    ...options
+    ...options,
   })
 }
 
-export const setRefreshToken = (refreshToken: string, options?: OptionsType) => {
+export const setRefreshToken = (
+  refreshToken: string,
+  options?: OptionsType,
+) => {
   setCookie(REFRESH_ACCESS_TOKEN_KEY, refreshToken, {
     secure: true,
     sameSite: 'strict',
     maxAge: REFRESH_TOKEN_EXPIRED_DATE,
-    ...options
+    ...options,
   })
 }
 
