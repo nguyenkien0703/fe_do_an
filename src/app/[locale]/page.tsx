@@ -1,7 +1,7 @@
 // import StoryBar from '@/components/story-bar';
 // import CreatePost from '@/components/create-post';
 // import Post from '@/components/post';
-
+'use client'
 import WorkspaceLogin from '@/components/workspace-login'
 
 // export default function Home() {
