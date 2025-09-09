@@ -1,5 +1,6 @@
 import instance, { clientNoneAuth } from '@/api/instances'
 import { VerificationType } from '@/constant/verifycation-type'
+import { getAccessToken, getRefreshToken } from '@/utils/tokenCookies'
 
 interface AuthParams {
   address: string
@@ -45,6 +46,21 @@ const authApi = {
   async verifyEmail(body: VerifyEmailBody): Promise<any> {
     return instance.post(`/auth/verify-email`, body).then((res) => res.data)
   },
+  async logout(): Promise<any> {
+    const refreshToken = getRefreshToken()
+    const accessToken = getAccessToken()
+    let body: any ={
+      refreshToken: refreshToken
+    }
+    return instance.post(
+      `/auth/logout`, body,
+      {
+        headers: {
+          Authorization:`Bearer ${accessToken}`
+        }
+      }
+    ).then((res)=> res.data)
+  }
 }
 
 export default authApi

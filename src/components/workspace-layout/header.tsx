@@ -5,9 +5,13 @@ import {
   BellOutlined,
   MessageOutlined,
   DownOutlined,
+  UserOutlined,
+  DesktopOutlined,
 } from '@ant-design/icons'
 import { Button, Layout } from 'antd'
 import LanguageSwitcher from '@/components/language-switcher'
+import authApi from '@/api/helper/auth'
+import { notification } from 'antd'
 
 import type { MenuProps } from 'antd'
 import { useEffect, useState } from 'react'
@@ -17,27 +21,91 @@ import AccountInfo from '../account-info'
 
 const Header = () => {
   const router = useRouter()
+  const { authState, logoutAction } = useAuthLogin()
+  const [mounted, setMounted] = useState(false)
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true)
+      
+      // Call API logout
+      await authApi.logout()
+      
+      // Update Redux state
+      logoutAction()
+      
+      // Clear session storage
+      sessionStorage.removeItem('login_form_state')
+      sessionStorage.removeItem('login_user_email')
+      
+      // Redirect to login
+      router.push('/')
+      
+      // Show success notification
+      notification.success({
+        message: 'Đăng xuất thành công',
+        description: 'Hẹn gặp lại bạn lần sau!',
+        duration: 3,
+      })
+    } catch (error: any) {
+      console.error('Logout error:', error)
+      
+      // Even if API fails, still logout locally
+      logoutAction()
+      sessionStorage.removeItem('login_form_state')
+      sessionStorage.removeItem('login_user_email')
+      router.push('/')
+      
+      notification.warning({
+        message: 'Đã đăng xuất',
+        description: 'Phiên đăng nhập đã kết thúc.',
+        duration: 3,
+      })
+    } finally {
+      setIsLoggingOut(false)
+    }
+  }
+
+  const handleMenuClick = ({ key }: { key: string }) => {
+    switch (key) {
+      case '1':
+        router.push('/profile')
+        break
+      case '2':
+        router.push('/settings')
+        break
+      case '3':
+        handleLogout()
+        break
+    }
+  }
+
   const userMenuItems: MenuProps['items'] = [
     {
       key: '1',
       label: 'Profile',
+      icon: <UserOutlined />,
     },
     {
       key: '2',
       label: 'Settings',
+      icon: <DesktopOutlined />,
+    },
+    {
+      type: 'divider',
     },
     {
       key: '3',
-      label: 'Logout',
+      label: isLoggingOut ? 'Đang đăng xuất...' : 'Logout',
+      icon: <BellOutlined />,
+      disabled: isLoggingOut,
     },
   ]
-
-  const { authState } = useAuthLogin()
-
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const handleClickZono = () => {
     router.push('/home')

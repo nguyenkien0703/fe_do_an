@@ -6,11 +6,61 @@ import { useAuthLogin } from '@/stores/auth/hooks'
 import Link from 'next/link'
 import Image from 'next/image'
 import { DownOutlined } from '@ant-design/icons'
+import { useMutation } from '@tanstack/react-query'
+import authApi from '@/api/helper/auth'
+import { useRouter } from 'next/navigation'
+import { notification } from 'antd'
+import { useState } from 'react'
 const { Text } = Typography
 
 export const AccountInfo = ({ avatar }: { name: string; avatar: string }) => {
   const t = useTranslations()
   const { authState, logoutAction } = useAuthLogin()
+  const router = useRouter()
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true)
+      
+      // Call API logout
+      await authApi.logout()
+      
+      // Update Redux state
+      logoutAction()
+      
+      // Clear session storage
+      sessionStorage.removeItem('login_form_state')
+      sessionStorage.removeItem('login_user_email')
+      
+      // Redirect to login
+      router.push('/')
+      
+      // Show success notification
+      notification.success({
+        message: 'Đăng xuất thành công',
+        description: 'Hẹn gặp lại bạn lần sau!',
+        duration: 3,
+      })
+    } catch (error: any) {
+      console.error('Logout error:', error)
+      
+      // Even if API fails, still logout locally
+      logoutAction()
+      sessionStorage.removeItem('login_form_state')
+      sessionStorage.removeItem('login_user_email')
+      router.push('/')
+      
+      notification.warning({
+        message: 'Đã đăng xuất',
+        description: 'Phiên đăng nhập đã kết thúc.',
+        duration: 3,
+      })
+    } finally {
+      setIsLoggingOut(false)
+    }
+  }
+  
   const items: MenuProps['items'] = [
     {
       key: '0',
@@ -53,12 +103,10 @@ export const AccountInfo = ({ avatar }: { name: string; avatar: string }) => {
       label: (
         <div
           className="py-[5px] text-sm leading-[22px]"
-          onClick={async () => {
-            logoutAction()
-            await new Promise((resolve) => setTimeout(resolve, 500))
-          }}
+          onClick={handleLogout}
+          style={{ opacity: isLoggingOut ? 0.6 : 1 }}
         >
-          {t('LOGOUT')}
+          {isLoggingOut ? 'Đang đăng xuất...' : t('LOGOUT')}
         </div>
       ),
     },
