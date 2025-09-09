@@ -7,6 +7,7 @@ import {
   DownOutlined,
 } from '@ant-design/icons'
 import { Button, Layout } from 'antd'
+import LanguageSwitcher from '@/components/language-switcher'
 
 import type { MenuProps } from 'antd'
 
@@ -34,8 +35,11 @@ const Header = () => {
           <div className="text-2xl font-bold text-blue-600">Zono</div>
         </div>
 
-        {/* Right Side - User Menu */}
+        {/* Right Side - Language Switcher & User Menu */}
         <div className="flex items-center space-x-4">
+          {/* Language Switcher */}
+          <LanguageSwitcher />
+          
           {/* User Profile */}
           <Dropdown menu={{ items: userMenuItems }} trigger={['click']}>
             <Space className="cursor-pointer">
