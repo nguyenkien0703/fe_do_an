@@ -175,7 +175,7 @@ export const WorkspaceLogin = () => {
               background: 'white',
               borderRadius: '20px',
               padding: isRegister ? '30px' : '40px',
-              width: isRegister ? '380px' : '420px',
+              width: '380px',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
               border: '1px solid rgba(0, 0, 0, 0.05)',
               zIndex: 10,
