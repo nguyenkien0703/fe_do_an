@@ -15,7 +15,7 @@ const WorkspaceLayout = (props: IWorkspaceLayout) => {
     <Layout className="min-h-screen">
       <Header />
 
-      <div className="flex pt-16" style={{ minHeight: 'calc(100vh - 64px)' }}>
+      <div className="flex p-4 pt-16 mt-2" style={{ minHeight: 'calc(100vh - 64px)' }}>
         <SidebarLeft />
         <div className="flex-1 min-w-0" style={{ padding: '0 20px' }}>
           <Content {...props} />
