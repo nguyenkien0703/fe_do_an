@@ -21,7 +21,18 @@ export const WorkspaceLogin = () => {
         <Col span={24} style={{ position: 'relative' }}>
           {/* Top White Section with Logo */}
           <Row style={{ height: '60%' }}>
-            <Col span={24} style={{ background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', paddingLeft: '80px', paddingRight: '80px', overflow: 'visible' }}>
+            <Col
+              span={24}
+              style={{
+                background: 'white',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                paddingLeft: '80px',
+                paddingRight: '80px',
+                overflow: 'visible',
+              }}
+            >
               <div style={{ textAlign: 'left' }}>
                 {/* Zono Text Logo */}
                 <div style={{ marginBottom: '20px' }}>
@@ -29,7 +40,8 @@ export const WorkspaceLogin = () => {
                     style={{
                       fontSize: '180px',
                       fontWeight: '900',
-                      background: 'linear-gradient(135deg, #7c3aed 0%, #3b82f6 50%, #1d4ed8 100%)',
+                      background:
+                        'linear-gradient(135deg, #7c3aed 0%, #3b82f6 50%, #1d4ed8 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
@@ -43,7 +55,13 @@ export const WorkspaceLogin = () => {
                   </span>
                 </div>
                 {/* Small Z icon below */}
-                <div style={{ display: 'flex', justifyContent: 'flex-start', marginLeft: '220px' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'flex-start',
+                    marginLeft: '220px',
+                  }}
+                >
                   <div
                     style={{
                       width: '60px',
@@ -72,7 +90,14 @@ export const WorkspaceLogin = () => {
 
           {/* Bottom Blue Section with Account History */}
           <Row style={{ height: '40%' }}>
-            <Col span={24} style={{ background: '#1890ff', padding: '40px 60px', position: 'relative' }}>
+            <Col
+              span={24}
+              style={{
+                background: '#1890ff',
+                padding: '40px 60px',
+                position: 'relative',
+              }}
+            >
               <div style={{ color: 'white' }}>
                 <h3
                   style={{
@@ -105,7 +130,8 @@ export const WorkspaceLogin = () => {
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.transform = 'translateY(-2px)'
-                          e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)'
+                          e.currentTarget.style.boxShadow =
+                            '0 4px 12px rgba(0, 0, 0, 0.1)'
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.transform = 'translateY(0)'
@@ -138,12 +164,18 @@ export const WorkspaceLogin = () => {
                             e.stopPropagation()
                           }}
                         >
-                          <CloseOutlined style={{ fontSize: '10px', color: '#999' }} />
+                          <CloseOutlined
+                            style={{ fontSize: '10px', color: '#999' }}
+                          />
                         </div>
 
                         {/* Avatar */}
-                        <Avatar size={48} src="/api/placeholder/48/48" style={{ marginBottom: '12px' }} />
-                        
+                        <Avatar
+                          size={48}
+                          src="/api/placeholder/48/48"
+                          style={{ marginBottom: '12px' }}
+                        />
+
                         {/* User Info */}
                         <div style={{ textAlign: 'center' }}>
                           <div
@@ -186,7 +218,8 @@ export const WorkspaceLogin = () => {
               borderRadius: '24px',
               padding: isRegister ? '32px' : '40px',
               width: '380px',
-              boxShadow: '0 32px 64px rgba(79, 172, 254, 0.08), 0 16px 32px rgba(0, 0, 0, 0.04)',
+              boxShadow:
+                '0 32px 64px rgba(79, 172, 254, 0.08), 0 16px 32px rgba(0, 0, 0, 0.04)',
               border: '1px solid rgba(79, 172, 254, 0.1)',
               backdropFilter: 'blur(10px)',
               zIndex: 10,
@@ -205,13 +238,13 @@ export const WorkspaceLogin = () => {
                     }}
                   >
                     {isRegister ? 'Đã có tài khoản ?' : 'Chưa có tài khoản ?'}{' '}
-                    <a 
-                      href="#" 
-                      style={{ 
-                        color: '#4f46e5', 
+                    <a
+                      href="#"
+                      style={{
+                        color: '#4f46e5',
                         textDecoration: 'none',
                         fontWeight: '500',
-                        transition: 'all 0.2s ease'
+                        transition: 'all 0.2s ease',
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.color = '#3730a3'
@@ -235,7 +268,7 @@ export const WorkspaceLogin = () => {
                       color: '#64748b',
                       marginBottom: '8px',
                       fontWeight: '400',
-                      letterSpacing: '0.5px'
+                      letterSpacing: '0.5px',
                     }}
                   >
                     ✨ Chào mừng đến với Zono
@@ -244,13 +277,14 @@ export const WorkspaceLogin = () => {
                     style={{
                       fontSize: isRegister ? '36px' : '42px',
                       fontWeight: '700',
-                      background: 'linear-gradient(135deg, #1e293b 0%, #4f46e5 100%)',
+                      background:
+                        'linear-gradient(135deg, #1e293b 0%, #4f46e5 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
                       margin: 0,
                       lineHeight: '1.2',
-                      letterSpacing: '-0.5px'
+                      letterSpacing: '-0.5px',
                     }}
                   >
                     {isRegister ? 'Đăng ký' : 'Đăng nhập'}
@@ -280,13 +314,15 @@ export const WorkspaceLogin = () => {
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-2px)'
-                      e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.08)'
+                      e.currentTarget.style.boxShadow =
+                        '0 8px 20px rgba(0, 0, 0, 0.08)'
                       e.currentTarget.style.backgroundColor = '#f9fafb'
                       e.currentTarget.style.borderColor = '#d1d5db'
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)'
-                      e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.04)'
+                      e.currentTarget.style.boxShadow =
+                        '0 4px 8px rgba(0, 0, 0, 0.04)'
                       e.currentTarget.style.backgroundColor = '#ffffff'
                       e.currentTarget.style.borderColor = '#e5e7eb'
                     }}
@@ -325,17 +361,24 @@ export const WorkspaceLogin = () => {
                   >
                     <Form.Item
                       label={
-                        <span style={{ 
-                          fontSize: '14px', 
-                          fontWeight: '600', 
-                          color: '#374151',
-                          letterSpacing: '0.3px'
-                        }}>
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            color: '#374151',
+                            letterSpacing: '0.3px',
+                          }}
+                        >
                           Username hoặc email của bạn
                         </span>
                       }
                       name="usernameOrEmail"
-                      rules={[{ required: true, message: 'Vui lòng nhập username hoặc email!' }]}
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Vui lòng nhập username hoặc email!',
+                        },
+                      ]}
                       style={{ marginBottom: '24px' }}
                     >
                       <Input
@@ -353,29 +396,35 @@ export const WorkspaceLogin = () => {
                         onFocus={(e) => {
                           e.target.style.border = '2px solid #4f46e5'
                           e.target.style.backgroundColor = '#ffffff'
-                          e.target.style.boxShadow = '0 4px 12px rgba(79, 70, 229, 0.1)'
+                          e.target.style.boxShadow =
+                            '0 4px 12px rgba(79, 70, 229, 0.1)'
                         }}
                         onBlur={(e) => {
                           e.target.style.border = '2px solid #e5e7eb'
                           e.target.style.backgroundColor = '#f9fafb'
-                          e.target.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.02)'
+                          e.target.style.boxShadow =
+                            '0 2px 4px rgba(0, 0, 0, 0.02)'
                         }}
                       />
                     </Form.Item>
 
                     <Form.Item
                       label={
-                        <span style={{ 
-                          fontSize: '14px', 
-                          fontWeight: '600', 
-                          color: '#374151',
-                          letterSpacing: '0.3px'
-                        }}>
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            color: '#374151',
+                            letterSpacing: '0.3px',
+                          }}
+                        >
                           Mật khẩu
                         </span>
                       }
                       name="password"
-                      rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
+                      rules={[
+                        { required: true, message: 'Vui lòng nhập mật khẩu!' },
+                      ]}
                       style={{ marginBottom: '24px' }}
                     >
                       <Input.Password
@@ -393,24 +442,34 @@ export const WorkspaceLogin = () => {
                         onFocus={(e) => {
                           e.target.style.border = '2px solid #4f46e5'
                           e.target.style.backgroundColor = '#ffffff'
-                          e.target.style.boxShadow = '0 4px 12px rgba(79, 70, 229, 0.1)'
+                          e.target.style.boxShadow =
+                            '0 4px 12px rgba(79, 70, 229, 0.1)'
                         }}
                         onBlur={(e) => {
                           e.target.style.border = '2px solid #e5e7eb'
                           e.target.style.backgroundColor = '#f9fafb'
-                          e.target.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.02)'
+                          e.target.style.boxShadow =
+                            '0 2px 4px rgba(0, 0, 0, 0.02)'
                         }}
                       />
                     </Form.Item>
 
-                    <Row justify="space-between" align="middle" style={{ marginBottom: '32px' }}>
+                    <Row
+                      justify="space-between"
+                      align="middle"
+                      style={{ marginBottom: '32px' }}
+                    >
                       <Col>
-                        <Form.Item name="remember" valuePropName="checked" style={{ marginBottom: 0 }}>
-                          <Checkbox 
-                            style={{ 
+                        <Form.Item
+                          name="remember"
+                          valuePropName="checked"
+                          style={{ marginBottom: 0 }}
+                        >
+                          <Checkbox
+                            style={{
                               fontSize: '14px',
                               fontWeight: '500',
-                              color: '#374151'
+                              color: '#374151',
                             }}
                           >
                             Nhớ tôi
@@ -418,14 +477,14 @@ export const WorkspaceLogin = () => {
                         </Form.Item>
                       </Col>
                       <Col>
-                        <a 
-                          href="#" 
-                          style={{ 
-                            fontSize: '14px', 
-                            color: '#4f46e5', 
+                        <a
+                          href="#"
+                          style={{
+                            fontSize: '14px',
+                            color: '#4f46e5',
                             textDecoration: 'none',
                             fontWeight: '500',
-                            transition: 'all 0.2s ease'
+                            transition: 'all 0.2s ease',
                           }}
                           onMouseEnter={(e) => {
                             e.currentTarget.style.textDecoration = 'underline'
@@ -452,21 +511,26 @@ export const WorkspaceLogin = () => {
                           borderRadius: '16px',
                           fontSize: '16px',
                           fontWeight: '700',
-                          background: 'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)',
+                          background:
+                            'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)',
                           border: 'none',
                           boxShadow: '0 8px 20px rgba(79, 70, 229, 0.25)',
                           transition: 'all 0.3s ease',
-                          letterSpacing: '0.5px'
+                          letterSpacing: '0.5px',
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.transform = 'translateY(-2px)'
-                          e.currentTarget.style.boxShadow = '0 12px 24px rgba(79, 70, 229, 0.35)'
-                          e.currentTarget.style.background = 'linear-gradient(135deg, #3730a3 0%, #1e1b4b 100%)'
+                          e.currentTarget.style.boxShadow =
+                            '0 12px 24px rgba(79, 70, 229, 0.35)'
+                          e.currentTarget.style.background =
+                            'linear-gradient(135deg, #3730a3 0%, #1e1b4b 100%)'
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.transform = 'translateY(0)'
-                          e.currentTarget.style.boxShadow = '0 8px 20px rgba(79, 70, 229, 0.25)'
-                          e.currentTarget.style.background = 'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)'
+                          e.currentTarget.style.boxShadow =
+                            '0 8px 20px rgba(79, 70, 229, 0.25)'
+                          e.currentTarget.style.background =
+                            'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)'
                         }}
                       >
                         ✨ Đăng nhập
@@ -485,17 +549,21 @@ export const WorkspaceLogin = () => {
                   >
                     <Form.Item
                       label={
-                        <span style={{ 
-                          fontSize: '14px', 
-                          fontWeight: '600', 
-                          color: '#374151',
-                          letterSpacing: '0.3px'
-                        }}>
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            color: '#374151',
+                            letterSpacing: '0.3px',
+                          }}
+                        >
                           Username
                         </span>
                       }
                       name="username"
-                      rules={[{ required: true, message: 'Vui lòng nhập username!' }]}
+                      rules={[
+                        { required: true, message: 'Vui lòng nhập username!' },
+                      ]}
                       style={{ marginBottom: '20px' }}
                     >
                       <Input
@@ -513,31 +581,35 @@ export const WorkspaceLogin = () => {
                         onFocus={(e) => {
                           e.target.style.border = '2px solid #4f46e5'
                           e.target.style.backgroundColor = '#ffffff'
-                          e.target.style.boxShadow = '0 4px 12px rgba(79, 70, 229, 0.1)'
+                          e.target.style.boxShadow =
+                            '0 4px 12px rgba(79, 70, 229, 0.1)'
                         }}
                         onBlur={(e) => {
                           e.target.style.border = '2px solid #e5e7eb'
                           e.target.style.backgroundColor = '#f9fafb'
-                          e.target.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.02)'
+                          e.target.style.boxShadow =
+                            '0 2px 4px rgba(0, 0, 0, 0.02)'
                         }}
                       />
                     </Form.Item>
 
                     <Form.Item
                       label={
-                        <span style={{ 
-                          fontSize: '14px', 
-                          fontWeight: '600', 
-                          color: '#374151',
-                          letterSpacing: '0.3px'
-                        }}>
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            color: '#374151',
+                            letterSpacing: '0.3px',
+                          }}
+                        >
                           Email
                         </span>
                       }
                       name="email"
                       rules={[
                         { required: true, message: 'Vui lòng nhập email!' },
-                        { type: 'email', message: 'Email không hợp lệ!' }
+                        { type: 'email', message: 'Email không hợp lệ!' },
                       ]}
                       style={{ marginBottom: '20px' }}
                     >
@@ -557,31 +629,38 @@ export const WorkspaceLogin = () => {
                         onFocus={(e) => {
                           e.target.style.border = '2px solid #4f46e5'
                           e.target.style.backgroundColor = '#ffffff'
-                          e.target.style.boxShadow = '0 4px 12px rgba(79, 70, 229, 0.1)'
+                          e.target.style.boxShadow =
+                            '0 4px 12px rgba(79, 70, 229, 0.1)'
                         }}
                         onBlur={(e) => {
                           e.target.style.border = '2px solid #e5e7eb'
                           e.target.style.backgroundColor = '#f9fafb'
-                          e.target.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.02)'
+                          e.target.style.boxShadow =
+                            '0 2px 4px rgba(0, 0, 0, 0.02)'
                         }}
                       />
                     </Form.Item>
 
                     <Form.Item
                       label={
-                        <span style={{ 
-                          fontSize: '14px', 
-                          fontWeight: '600', 
-                          color: '#374151',
-                          letterSpacing: '0.3px'
-                        }}>
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            color: '#374151',
+                            letterSpacing: '0.3px',
+                          }}
+                        >
                           Mật khẩu
                         </span>
                       }
                       name="password"
                       rules={[
                         { required: true, message: 'Vui lòng nhập mật khẩu!' },
-                        { min: 6, message: 'Mật khẩu phải có ít nhất 6 ký tự!' }
+                        {
+                          min: 6,
+                          message: 'Mật khẩu phải có ít nhất 6 ký tự!',
+                        },
                       ]}
                       style={{ marginBottom: '20px' }}
                     >
@@ -600,37 +679,46 @@ export const WorkspaceLogin = () => {
                         onFocus={(e) => {
                           e.target.style.border = '2px solid #4f46e5'
                           e.target.style.backgroundColor = '#ffffff'
-                          e.target.style.boxShadow = '0 4px 12px rgba(79, 70, 229, 0.1)'
+                          e.target.style.boxShadow =
+                            '0 4px 12px rgba(79, 70, 229, 0.1)'
                         }}
                         onBlur={(e) => {
                           e.target.style.border = '2px solid #e5e7eb'
                           e.target.style.backgroundColor = '#f9fafb'
-                          e.target.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.02)'
+                          e.target.style.boxShadow =
+                            '0 2px 4px rgba(0, 0, 0, 0.02)'
                         }}
                       />
                     </Form.Item>
 
                     <Form.Item
                       label={
-                        <span style={{ 
-                          fontSize: '14px', 
-                          fontWeight: '600', 
-                          color: '#374151',
-                          letterSpacing: '0.3px'
-                        }}>
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            color: '#374151',
+                            letterSpacing: '0.3px',
+                          }}
+                        >
                           Xác nhận mật khẩu
                         </span>
                       }
                       name="confirmPassword"
                       dependencies={['password']}
                       rules={[
-                        { required: true, message: 'Vui lòng xác nhận mật khẩu!' },
+                        {
+                          required: true,
+                          message: 'Vui lòng xác nhận mật khẩu!',
+                        },
                         ({ getFieldValue }) => ({
                           validator(_, value) {
                             if (!value || getFieldValue('password') === value) {
                               return Promise.resolve()
                             }
-                            return Promise.reject(new Error('Mật khẩu xác nhận không khớp!'))
+                            return Promise.reject(
+                              new Error('Mật khẩu xác nhận không khớp!'),
+                            )
                           },
                         }),
                       ]}
@@ -651,12 +739,14 @@ export const WorkspaceLogin = () => {
                         onFocus={(e) => {
                           e.target.style.border = '2px solid #4f46e5'
                           e.target.style.backgroundColor = '#ffffff'
-                          e.target.style.boxShadow = '0 4px 12px rgba(79, 70, 229, 0.1)'
+                          e.target.style.boxShadow =
+                            '0 4px 12px rgba(79, 70, 229, 0.1)'
                         }}
                         onBlur={(e) => {
                           e.target.style.border = '2px solid #e5e7eb'
                           e.target.style.backgroundColor = '#f9fafb'
-                          e.target.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.02)'
+                          e.target.style.boxShadow =
+                            '0 2px 4px rgba(0, 0, 0, 0.02)'
                         }}
                       />
                     </Form.Item>
@@ -672,21 +762,26 @@ export const WorkspaceLogin = () => {
                           borderRadius: '14px',
                           fontSize: '16px',
                           fontWeight: '700',
-                          background: 'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)',
+                          background:
+                            'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)',
                           border: 'none',
                           boxShadow: '0 8px 20px rgba(79, 70, 229, 0.25)',
                           transition: 'all 0.3s ease',
-                          letterSpacing: '0.5px'
+                          letterSpacing: '0.5px',
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.transform = 'translateY(-2px)'
-                          e.currentTarget.style.boxShadow = '0 12px 24px rgba(79, 70, 229, 0.35)'
-                          e.currentTarget.style.background = 'linear-gradient(135deg, #3730a3 0%, #1e1b4b 100%)'
+                          e.currentTarget.style.boxShadow =
+                            '0 12px 24px rgba(79, 70, 229, 0.35)'
+                          e.currentTarget.style.background =
+                            'linear-gradient(135deg, #3730a3 0%, #1e1b4b 100%)'
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.transform = 'translateY(0)'
-                          e.currentTarget.style.boxShadow = '0 8px 20px rgba(79, 70, 229, 0.25)'
-                          e.currentTarget.style.background = 'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)'
+                          e.currentTarget.style.boxShadow =
+                            '0 8px 20px rgba(79, 70, 229, 0.25)'
+                          e.currentTarget.style.background =
+                            'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)'
                         }}
                       >
                         ✨ Đăng ký
