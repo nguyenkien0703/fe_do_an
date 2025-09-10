@@ -1,37 +1,49 @@
-'use client';
-import { Avatar, Button, Image } from 'antd';
-import { LikeOutlined, CommentOutlined, ShareAltOutlined, EllipsisOutlined } from '@ant-design/icons';
-import React, { useState } from 'react';
+'use client'
+import { Avatar, Button, Image } from 'antd'
+import {
+  LikeOutlined,
+  CommentOutlined,
+  ShareAltOutlined,
+  EllipsisOutlined,
+} from '@ant-design/icons'
+import React, { useState } from 'react'
 
 interface PostProps {
-  id: string;
+  id: string
   author: {
-    name: string;
-    avatar: string;
-    time: string;
-  };
-  content: string;
-  images?: string[];
-  likes: number;
-  comments: number;
-  shares: number;
+    name: string
+    avatar: string
+    time: string
+  }
+  content: string
+  images?: string[]
+  likes: number
+  comments: number
+  shares: number
 }
 
-const Post: React.FC<PostProps> = ({ author, content, images, likes, comments, shares }) => {
-  const [liked, setLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(likes);
+const Post: React.FC<PostProps> = ({
+  author,
+  content,
+  images,
+  likes,
+  comments,
+  shares,
+}) => {
+  const [liked, setLiked] = useState(false)
+  const [likesCount, setLikesCount] = useState(likes)
 
   const handleLike = () => {
     if (liked) {
-      setLikesCount(likesCount - 1);
+      setLikesCount(likesCount - 1)
     } else {
-      setLikesCount(likesCount + 1);
+      setLikesCount(likesCount + 1)
     }
-    setLiked(!liked);
-  };
+    setLiked(!liked)
+  }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm mb-6 overflow-hidden">
+    <div className="mb-6 overflow-hidden rounded-lg bg-white shadow-sm">
       {/* Post Header */}
       <div className="p-4">
         <div className="flex items-start justify-between">
@@ -50,11 +62,7 @@ const Post: React.FC<PostProps> = ({ author, content, images, likes, comments, s
         </div>
 
         {/* Post Content */}
-        {content && (
-          <div className="mt-4 text-gray-800">
-            {content}
-          </div>
-        )}
+        {content && <div className="mt-4 text-gray-800">{content}</div>}
       </div>
 
       {/* Post Images */}
@@ -64,7 +72,7 @@ const Post: React.FC<PostProps> = ({ author, content, images, likes, comments, s
             <Image
               src={images[0]}
               alt="Post image"
-              className="w-full max-h-96 object-cover"
+              className="max-h-96 w-full object-cover"
               preview={false}
             />
           ) : (
@@ -74,7 +82,7 @@ const Post: React.FC<PostProps> = ({ author, content, images, likes, comments, s
                   key={index}
                   src={image}
                   alt={`Post image ${index + 1}`}
-                  className="w-full h-48 object-cover"
+                  className="h-48 w-full object-cover"
                   preview={false}
                 />
               ))}
@@ -84,11 +92,11 @@ const Post: React.FC<PostProps> = ({ author, content, images, likes, comments, s
       )}
 
       {/* Post Stats */}
-      <div className="px-4 py-2 border-b border-gray-100">
+      <div className="border-b border-gray-100 px-4 py-2">
         <div className="flex items-center justify-between text-sm text-gray-500">
           <div className="flex items-center space-x-1">
-            <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs">👍</span>
+            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-500">
+              <span className="text-xs text-white">👍</span>
             </div>
             <span>{likesCount}</span>
           </div>
@@ -106,32 +114,34 @@ const Post: React.FC<PostProps> = ({ author, content, images, likes, comments, s
             type="text"
             icon={<LikeOutlined />}
             onClick={handleLike}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
-              liked ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:bg-gray-100'
+            className={`flex items-center space-x-2 rounded-lg px-4 py-2 ${
+              liked
+                ? 'bg-blue-50 text-blue-600'
+                : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
             <span>Thích</span>
           </Button>
-          
+
           <Button
             type="text"
             icon={<CommentOutlined />}
-            className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100"
+            className="flex items-center space-x-2 rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100"
           >
             <span>Bình luận</span>
           </Button>
-          
+
           <Button
             type="text"
             icon={<ShareAltOutlined />}
-            className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100"
+            className="flex items-center space-x-2 rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100"
           >
             <span>Chia sẻ</span>
           </Button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Post;
+export default Post

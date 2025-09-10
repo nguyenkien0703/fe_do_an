@@ -1,5 +1,5 @@
-'use client';
-import { Menu, Avatar } from 'antd';
+'use client'
+import { Menu, Avatar } from 'antd'
 import {
   HomeOutlined,
   UserOutlined,
@@ -7,8 +7,8 @@ import {
   VideoCameraOutlined,
   DesktopOutlined,
   TeamOutlined,
-} from '@ant-design/icons';
-import React from 'react';
+} from '@ant-design/icons'
+import React from 'react'
 
 const SidebarLeft = () => {
   const menuItems = [
@@ -42,20 +42,20 @@ const SidebarLeft = () => {
       icon: <TeamOutlined />,
       label: 'Nhóm',
     },
-  ];
+  ]
 
   const recentActivities = [
     { id: 1, name: 'Roger Korsgaard', time: 'recent' },
     { id: 2, name: 'Tìm kiếm ABC', time: 'recent' },
     { id: 3, name: 'Tham gia nhóm ABC', time: 'recent' },
     { id: 4, name: 'NoName', time: 'recent' },
-  ];
+  ]
 
   return (
-    <div className="w-64 h-[calc(100vh-64px)] bg-white shadow-sm overflow-y-auto sticky top-16">
+    <div className="sticky top-16 h-[calc(100vh-64px)] w-64 overflow-y-auto bg-white shadow-sm">
       <div className="p-4">
         {/* User Profile Section */}
-        <div className="flex items-center space-x-3 mb-6 p-3 rounded-lg hover:bg-gray-50">
+        <div className="mb-6 flex items-center space-x-3 rounded-lg p-3 hover:bg-gray-50">
           <Avatar
             size={48}
             src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ban"
@@ -76,14 +76,16 @@ const SidebarLeft = () => {
 
         {/* Recent Activities Section */}
         <div className="mt-8">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">Hoạt động gần đây</h3>
+          <h3 className="mb-4 text-lg font-semibold text-gray-800">
+            Hoạt động gần đây
+          </h3>
           <div className="space-y-2">
             {recentActivities.map((activity) => (
               <div
                 key={activity.id}
-                className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer"
+                className="flex cursor-pointer items-center space-x-3 rounded-lg p-2 hover:bg-gray-50"
               >
-                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                <div className="h-2 w-2 rounded-full bg-blue-500"></div>
                 <span className="text-sm text-gray-700">{activity.name}</span>
               </div>
             ))}
@@ -96,7 +98,7 @@ const SidebarLeft = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SidebarLeft;
+export default SidebarLeft

@@ -1,8 +1,8 @@
-import type { ThemeConfig } from 'antd';
+import type { ThemeConfig } from 'antd'
 
 const theme: ThemeConfig = {
   token: {},
-  components: {}
-};
+  components: {},
+}
 
-export default theme;
+export default theme

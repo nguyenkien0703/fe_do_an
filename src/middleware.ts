@@ -1,4 +1,4 @@
-import createMiddleware from 'next-intl/middleware';
+import createMiddleware from 'next-intl/middleware'
 // import useCurrentChainInformation from './hooks/useCurrentChainInformation';
 
 export default createMiddleware({
@@ -7,11 +7,11 @@ export default createMiddleware({
 
   // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
   // defaultLocale: `en/${chainData.name.replace(/\s+/g, '')}`
-  defaultLocale: 'en'
-});
+  defaultLocale: 'vi',
+})
 
 export const config = {
   // Skip all paths that should not be internationalized. This example skips the
   // folders "api", "_next" and all files with an extension (e.g. favicon.ico)
-  matcher: ['/((?!api|_next|.*\\..*).*)']
-};
+  matcher: ['/((?!api|_next|.*\\..*).*)'],
+}

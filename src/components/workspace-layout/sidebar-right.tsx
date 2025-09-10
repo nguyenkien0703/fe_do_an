@@ -1,7 +1,7 @@
-'use client';
-import { Avatar, Input } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
-import React from 'react';
+'use client'
+import { Avatar, Input } from 'antd'
+import { SearchOutlined } from '@ant-design/icons'
+import React from 'react'
 
 const SidebarRight = () => {
   const contacts = [
@@ -53,13 +53,13 @@ const SidebarRight = () => {
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Craig',
       online: true,
     },
-  ];
+  ]
 
   return (
-    <div className="w-80 h-[calc(100vh-64px)] bg-white shadow-sm overflow-y-auto sticky top-16">
+    <div className="sticky top-16 h-[calc(100vh-64px)] w-80 overflow-y-auto bg-white shadow-sm">
       <div className="p-4">
         {/* Messages Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-800">Tin nhắn</h2>
           <div className="flex space-x-2">
             <button className="text-gray-500 hover:text-gray-700">⋯</button>
@@ -71,7 +71,7 @@ const SidebarRight = () => {
           <Input
             placeholder="Tìm kiếm"
             prefix={<SearchOutlined className="text-gray-400" />}
-            className="rounded-full bg-gray-100 border-0"
+            className="rounded-full border-0 bg-gray-100"
           />
         </div>
 
@@ -85,19 +85,18 @@ const SidebarRight = () => {
           {contacts.map((contact) => (
             <div
               key={contact.id}
-              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer"
+              className="flex cursor-pointer items-center space-x-3 rounded-lg p-2 hover:bg-gray-50"
             >
               <div className="relative">
-                <Avatar
-                  size={40}
-                  src={contact.avatar}
-                />
+                <Avatar size={40} src={contact.avatar} />
                 {contact.online && (
-                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+                  <div className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-green-500"></div>
                 )}
               </div>
               <div className="flex-1">
-                <div className="font-medium text-gray-800 text-sm">{contact.name}</div>
+                <div className="text-sm font-medium text-gray-800">
+                  {contact.name}
+                </div>
               </div>
             </div>
           ))}
@@ -111,7 +110,7 @@ const SidebarRight = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SidebarRight;
+export default SidebarRight

@@ -15,8 +15,8 @@ const lightModeColors = [
       { color: 'rgb(24, 34, 48)', level: '800' },
       { color: 'rgb(16, 24, 40)', level: '900' },
       { color: 'rgb(12, 17, 29)', level: '950' },
-      { color: 'rgb(0, 0, 0)', level: '1000' }
-    ]
+      { color: 'rgb(0, 0, 0)', level: '1000' },
+    ],
   },
   {
     variantName: 'Primary',
@@ -31,8 +31,8 @@ const lightModeColors = [
       { color: 'rgb(2, 106, 162)', level: '700' },
       { color: 'rgb(6, 89, 134)', level: '800' },
       { color: 'rgb(11, 74, 111)', level: '900' },
-      { color: 'rgb(6, 44, 65)', level: '950' }
-    ]
+      { color: 'rgb(6, 44, 65)', level: '950' },
+    ],
   },
   {
     variantName: 'Success',
@@ -47,8 +47,8 @@ const lightModeColors = [
       { color: 'rgb(6, 118, 71)', level: '700' },
       { color: 'rgb(8, 93, 58)', level: '800' },
       { color: 'rgb(7, 77, 49)', level: '900' },
-      { color: 'rgb(5, 51, 33)', level: '950' }
-    ]
+      { color: 'rgb(5, 51, 33)', level: '950' },
+    ],
   },
   {
     variantName: 'Warning',
@@ -63,8 +63,8 @@ const lightModeColors = [
       { color: 'rgb(181, 71, 8)', level: '700' },
       { color: 'rgb(147, 55, 13)', level: '800' },
       { color: 'rgb(122, 46, 14)', level: '900' },
-      { color: 'rgb(78, 29, 9)', level: '950' }
-    ]
+      { color: 'rgb(78, 29, 9)', level: '950' },
+    ],
   },
   {
     variantName: 'Error',
@@ -79,8 +79,8 @@ const lightModeColors = [
       { color: 'rgb(180, 35, 24)', level: '700' },
       { color: 'rgb(145, 32, 24)', level: '800' },
       { color: 'rgb(122, 39, 26)', level: '900' },
-      { color: 'rgb(85, 22, 12)', level: '950' }
-    ]
+      { color: 'rgb(85, 22, 12)', level: '950' },
+    ],
   },
   {
     variantName: 'Alpha',
@@ -94,18 +94,18 @@ const lightModeColors = [
       { color: 'rgba(255, 255, 255, 0.698)', level: '70%' },
       { color: 'rgba(255, 255, 255, 0.8)', level: '80%' },
       { color: 'rgba(255, 255, 255, 0.898)', level: '90%' },
-      { color: 'rgb(255, 255, 255)', level: '100%' }
-    ]
+      { color: 'rgb(255, 255, 255)', level: '100%' },
+    ],
   },
   {
     variantName: 'Pink',
-    variantList: [{ color: 'rgb(250, 46, 105)', level: '50' }]
+    variantList: [{ color: 'rgb(250, 46, 105)', level: '50' }],
   },
   {
     variantName: 'Blue',
-    variantList: [{ color: 'rgb(54, 191, 250)', level: '400' }]
-  }
-];
+    variantList: [{ color: 'rgb(54, 191, 250)', level: '400' }],
+  },
+]
 
 const darkModeColors = [
   {
@@ -123,8 +123,8 @@ const darkModeColors = [
       { color: 'rgb(236, 236, 237)', level: '800' },
       { color: 'rgb(240, 241, 241)', level: '900' },
       { color: 'rgb(249, 250, 251)', level: '950' },
-      { color: 'rgb(255, 255, 255)', level: '1000' }
-    ]
+      { color: 'rgb(255, 255, 255)', level: '1000' },
+    ],
   },
   {
     variantName: 'Primary',
@@ -139,8 +139,8 @@ const darkModeColors = [
       { color: 'rgb(124, 212, 253)', level: '700' },
       { color: 'rgb(185, 230, 254)', level: '800' },
       { color: 'rgb(224, 242, 254)', level: '900' },
-      { color: 'rgb(240, 249, 255)', level: '950' }
-    ]
+      { color: 'rgb(240, 249, 255)', level: '950' },
+    ],
   },
   {
     variantName: 'Success',
@@ -155,8 +155,8 @@ const darkModeColors = [
       { color: 'rgb(117, 224, 167)', level: '700' },
       { color: 'rgb(171, 239, 198)', level: '800' },
       { color: 'rgb(220, 250, 230)', level: '900' },
-      { color: 'rgb(236, 253, 243)', level: '950' }
-    ]
+      { color: 'rgb(236, 253, 243)', level: '950' },
+    ],
   },
   {
     variantName: 'Warning',
@@ -171,8 +171,8 @@ const darkModeColors = [
       { color: 'rgb(254, 200, 75)', level: '700' },
       { color: 'rgb(254, 223, 137)', level: '800' },
       { color: 'rgb(254, 240, 199)', level: '900' },
-      { color: 'rgb(255, 250, 235)', level: '950' }
-    ]
+      { color: 'rgb(255, 250, 235)', level: '950' },
+    ],
   },
   {
     variantName: 'Error',
@@ -187,8 +187,8 @@ const darkModeColors = [
       { color: 'rgb(253, 162, 155)', level: '700' },
       { color: 'rgb(254, 205, 202)', level: '800' },
       { color: 'rgb(254, 228, 226)', level: '900' },
-      { color: 'rgb(254, 243, 242)', level: '950' }
-    ]
+      { color: 'rgb(254, 243, 242)', level: '950' },
+    ],
   },
   {
     variantName: 'Alpha',
@@ -202,74 +202,74 @@ const darkModeColors = [
       { color: 'rgba(0, 0, 0, 0.698)', level: '70%' },
       { color: 'rgba(0, 0, 0, 0.8)', level: '80%' },
       { color: 'rgba(0, 0, 0, 0.898)', level: '90%' },
-      { color: 'rgb(0, 0, 0)', level: '100%' }
-    ]
+      { color: 'rgb(0, 0, 0)', level: '100%' },
+    ],
   },
   {
     variantName: 'Pink',
-    variantList: [{ color: 'rgb(250, 46, 105)', level: '50' }]
+    variantList: [{ color: 'rgb(250, 46, 105)', level: '50' }],
   },
   {
     variantName: 'Blue',
-    variantList: [{ color: 'rgb(54, 191, 250)', level: '400' }]
-  }
-];
+    variantList: [{ color: 'rgb(54, 191, 250)', level: '400' }],
+  },
+]
 
 const lightModeColorMap = lightModeColors.reduce((map, color) => {
   // @ts-ignore
-  map[color.variantName] = color.variantList;
-  return map;
-}, {});
+  map[color.variantName] = color.variantList
+  return map
+}, {})
 
 const darkModeColorMap = darkModeColors.reduce((map, color) => {
   // @ts-ignore
-  map[color.variantName] = color.variantList;
-  return map;
-}, {});
+  map[color.variantName] = color.variantList
+  return map
+}, {})
 
 function generateTailwindColor() {
   const colors = {
     light: {},
-    dark: {}
-  };
+    dark: {},
+  }
 
   for (const key in lightModeColorMap) {
     if (Object.prototype.hasOwnProperty.call(lightModeColorMap, key)) {
-      const variant = {};
+      const variant = {}
 
       // @ts-ignore
-      const colorList = lightModeColorMap[key];
+      const colorList = lightModeColorMap[key]
 
       for (const color of colorList) {
         // @ts-ignore
-        variant[color.level] = color.color;
+        variant[color.level] = color.color
       }
 
       // @ts-ignore
-      colors[key.toLowerCase()] = variant;
+      colors[key.toLowerCase()] = variant
       // @ts-ignore
-      colors.light[key.toLowerCase()] = variant;
+      colors.light[key.toLowerCase()] = variant
     }
   }
 
   for (const key in darkModeColorMap) {
     if (Object.prototype.hasOwnProperty.call(darkModeColorMap, key)) {
-      const variant = {};
+      const variant = {}
 
       // @ts-ignore
-      const colorList = darkModeColorMap[key];
+      const colorList = darkModeColorMap[key]
 
       for (const color of colorList) {
         // @ts-ignore
-        variant[color.level] = color.color;
+        variant[color.level] = color.color
       }
 
       // @ts-ignore
-      colors.dark[key.toLowerCase()] = variant;
+      colors.dark[key.toLowerCase()] = variant
     }
   }
 
-  return colors;
+  return colors
 }
 
 export const colors = {
@@ -287,7 +287,7 @@ export const colors = {
       '800': 'rgb(236, 236, 237)',
       '900': 'rgb(240, 241, 241)',
       '950': 'rgb(249, 250, 251)',
-      '1000': 'rgb(255, 255, 255)'
+      '1000': 'rgb(255, 255, 255)',
     },
     primary: {
       '50': 'rgb(6, 44, 65)',
@@ -300,7 +300,7 @@ export const colors = {
       '700': 'rgb(124, 212, 253)',
       '800': 'rgb(185, 230, 254)',
       '900': 'rgb(224, 242, 254)',
-      '950': 'rgb(240, 249, 255)'
+      '950': 'rgb(240, 249, 255)',
     },
     success: {
       '50': 'rgb(5, 51, 33)',
@@ -313,7 +313,7 @@ export const colors = {
       '700': 'rgb(117, 224, 167)',
       '800': 'rgb(171, 239, 198)',
       '900': 'rgb(220, 250, 230)',
-      '950': 'rgb(236, 253, 243)'
+      '950': 'rgb(236, 253, 243)',
     },
     warning: {
       '50': 'rgb(78, 29, 9)',
@@ -326,7 +326,7 @@ export const colors = {
       '700': 'rgb(254, 200, 75)',
       '800': 'rgb(254, 223, 137)',
       '900': 'rgb(254, 240, 199)',
-      '950': 'rgb(255, 250, 235)'
+      '950': 'rgb(255, 250, 235)',
     },
     error: {
       '50': 'rgb(85, 22, 12)',
@@ -339,7 +339,7 @@ export const colors = {
       '700': 'rgb(253, 162, 155)',
       '800': 'rgb(254, 205, 202)',
       '900': 'rgb(254, 228, 226)',
-      '950': 'rgb(254, 243, 242)'
+      '950': 'rgb(254, 243, 242)',
     },
     alpha: {
       '10%': 'rgba(0, 0, 0, 0.1)',
@@ -351,10 +351,10 @@ export const colors = {
       '70%': 'rgba(0, 0, 0, 0.698)',
       '80%': 'rgba(0, 0, 0, 0.8)',
       '90%': 'rgba(0, 0, 0, 0.898)',
-      '100%': 'rgb(0, 0, 0)'
+      '100%': 'rgb(0, 0, 0)',
     },
     pink: { '50': 'rgb(250, 46, 105)' },
-    blue: { '400': 'rgb(54, 191, 250)' }
+    blue: { '400': 'rgb(54, 191, 250)' },
   },
   light: {
     neutral: {
@@ -370,7 +370,7 @@ export const colors = {
       '800': 'rgb(24, 34, 48)',
       '900': 'rgb(16, 24, 40)',
       '950': 'rgb(12, 17, 29)',
-      '1000': 'rgb(0, 0, 0)'
+      '1000': 'rgb(0, 0, 0)',
     },
     primary: {
       '50': 'rgb(240, 249, 255)',
@@ -383,7 +383,7 @@ export const colors = {
       '700': 'rgb(2, 106, 162)',
       '800': 'rgb(6, 89, 134)',
       '900': 'rgb(11, 74, 111)',
-      '950': 'rgb(6, 44, 65)'
+      '950': 'rgb(6, 44, 65)',
     },
     success: {
       '50': 'rgb(236, 253, 243)',
@@ -396,7 +396,7 @@ export const colors = {
       '700': 'rgb(6, 118, 71)',
       '800': 'rgb(8, 93, 58)',
       '900': 'rgb(7, 77, 49)',
-      '950': 'rgb(5, 51, 33)'
+      '950': 'rgb(5, 51, 33)',
     },
     warning: {
       '50': 'rgb(255, 250, 235)',
@@ -409,7 +409,7 @@ export const colors = {
       '700': 'rgb(181, 71, 8)',
       '800': 'rgb(147, 55, 13)',
       '900': 'rgb(122, 46, 14)',
-      '950': 'rgb(78, 29, 9)'
+      '950': 'rgb(78, 29, 9)',
     },
     error: {
       '50': 'rgb(254, 243, 242)',
@@ -422,7 +422,7 @@ export const colors = {
       '700': 'rgb(180, 35, 24)',
       '800': 'rgb(145, 32, 24)',
       '900': 'rgb(122, 39, 26)',
-      '950': 'rgb(85, 22, 12)'
+      '950': 'rgb(85, 22, 12)',
     },
     alpha: {
       '10%': 'rgba(255, 255, 255, 0.1)',
@@ -434,9 +434,9 @@ export const colors = {
       '70%': 'rgba(255, 255, 255, 0.698)',
       '80%': 'rgba(255, 255, 255, 0.8)',
       '90%': 'rgba(255, 255, 255, 0.898)',
-      '100%': 'rgb(255, 255, 255)'
+      '100%': 'rgb(255, 255, 255)',
     },
     pink: { '50': 'rgb(250, 46, 105)' },
-    blue: { '400': 'rgb(54, 191, 250)' }
-  }
-};
+    blue: { '400': 'rgb(54, 191, 250)' },
+  },
+}

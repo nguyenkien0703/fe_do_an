@@ -1,7 +1,7 @@
 /* eslint-disable */
-import { configureStore } from '@reduxjs/toolkit';
-import { useMemo } from 'react';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit'
+import { useMemo } from 'react'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 import {
   FLUSH,
@@ -11,33 +11,33 @@ import {
   REGISTER,
   REHYDRATE,
   persistReducer,
-  persistStore
-} from 'redux-persist';
+  persistStore,
+} from 'redux-persist'
 
-import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
-import rootReducer from './reducers';
+import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
+import rootReducer from './reducers'
 
 const createNoopStorage = () => {
   return {
     getItem(_key: string) {
-      return Promise.resolve(null);
+      return Promise.resolve(null)
     },
     setItem(_key: string, value: string) {
-      return Promise.resolve(value);
+      return Promise.resolve(value)
     },
     removeItem(_key: string) {
-      return Promise.resolve();
-    }
-  };
-};
+      return Promise.resolve()
+    },
+  }
+}
 
 const storage =
   typeof window !== 'undefined'
     ? createWebStorage('local')
-    : createNoopStorage();
+    : createNoopStorage()
 
-const PERSIST_CONFIG_VERSION = 3;
-const PERSISTED_KEYS: string[] = [''];
+const PERSIST_CONFIG_VERSION = 3
+const PERSISTED_KEYS: string[] = ['']
 
 const persistConfig = {
   key: 'root',
@@ -46,17 +46,17 @@ const persistConfig = {
   // whitelist: PERSISTED_KEYS,
   migrate: (state: any) => {
     if (state) {
-      const keysToDelete = [''];
-      keysToDelete.forEach((key) => delete state[key]);
+      const keysToDelete = ['']
+      keysToDelete.forEach((key) => delete state[key])
     }
-    return Promise.resolve(state);
-  }
-};
+    return Promise.resolve(state)
+  },
+}
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 // eslint-disable-next-line import/no-mutable-exports
-let store: ReturnType<typeof makeStore> | undefined;
+let store: ReturnType<typeof makeStore> | undefined
 
 export function makeStore(preloadedState = undefined) {
   return configureStore({
@@ -65,57 +65,57 @@ export function makeStore(preloadedState = undefined) {
       getDefaultMiddleware({
         thunk: true,
         serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-        }
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
       }),
     devTools: process.env.NODE_ENV === 'development',
-    preloadedState
-  });
+    preloadedState,
+  })
 }
 
 export const initializeStore = (preloadedState: any = undefined) => {
-  let _store = store ?? makeStore(preloadedState);
+  let _store = store ?? makeStore(preloadedState)
 
   // After navigating to a page with an initial Redux state, merge that state
   // with the current state in the store, and create a new store
   if (preloadedState && store) {
     _store = makeStore({
       ...store.getState(),
-      ...preloadedState
-    });
+      ...preloadedState,
+    })
     // Reset the current store
-    store = undefined;
+    store = undefined
   }
 
   // For SSG and SSR always create a new store
-  if (typeof window === 'undefined') return _store;
+  if (typeof window === 'undefined') return _store
 
   // Create the store once in the client
   if (!store) {
-    store = _store;
+    store = _store
   }
 
-  return _store;
-};
+  return _store
+}
 
-store = initializeStore();
+store = initializeStore()
 
 /**
  * @see https://redux-toolkit.js.org/usage/usage-with-typescript#getting-the-dispatch-type
  */
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>
 
-export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 export const useAppSelector: TypedUseSelectorHook<
   ReturnType<typeof store.getState>
-> = useSelector;
+> = useSelector
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(store)
 
 export function useStore(initialState: any) {
-  return useMemo(() => initializeStore(initialState), [initialState]);
+  return useMemo(() => initializeStore(initialState), [initialState])
 }
 
-export default store;
+export default store

@@ -1,21 +1,9 @@
-import { combineReducers, createSlice } from '@reduxjs/toolkit';
+import { combineReducers, createSlice } from '@reduxjs/toolkit'
 
-const appSlice = createSlice({
-  name: 'app',
-  initialState: {
-    initialized: false,
-  },
-  reducers: {
-    setInitialized: (state, action) => {
-      state.initialized = action.payload;
-    },
-  },
-});
-
-export const { setInitialized } = appSlice.actions;
+import authReducer from '@/stores/auth/slice'
 
 const rootReducer = combineReducers({
-  app: appSlice.reducer,
-});
+  auth: authReducer,
+})
 
-export default rootReducer;
+export default rootReducer

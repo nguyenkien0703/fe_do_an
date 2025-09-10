@@ -1,6 +1,6 @@
-'use client';
-import { Avatar } from 'antd';
-import React from 'react';
+'use client'
+import { Avatar } from 'antd'
+import React from 'react'
 
 const StoryBar = () => {
   const stories = [
@@ -47,36 +47,38 @@ const StoryBar = () => {
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=NguyenThiB',
       hasStory: true,
     },
-  ];
+  ]
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+    <div className="mb-6 rounded-lg bg-white p-4 shadow-sm">
       <div className="flex space-x-4 overflow-x-auto">
         {stories.map((story) => (
           <div
             key={story.id}
-            className="flex flex-col items-center space-y-2 cursor-pointer group min-w-[80px]"
+            className="group flex min-w-[80px] cursor-pointer flex-col items-center space-y-2"
           >
-            <div className={`relative ${story.hasStory ? 'ring-4 ring-blue-500 rounded-full' : ''}`}>
+            <div
+              className={`relative ${story.hasStory ? 'rounded-full ring-4 ring-blue-500' : ''}`}
+            >
               <Avatar
                 size={64}
                 src={story.avatar}
                 className="transition-transform group-hover:scale-105"
               />
               {story.isAddStory && (
-                <div className="absolute bottom-0 right-0 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center border-2 border-white">
-                  <span className="text-white text-sm font-bold">+</span>
+                <div className="absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-blue-600">
+                  <span className="text-sm font-bold text-white">+</span>
                 </div>
               )}
             </div>
-            <span className="text-xs text-gray-700 text-center font-medium truncate w-full">
+            <span className="w-full truncate text-center text-xs font-medium text-gray-700">
               {story.name}
             </span>
           </div>
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default StoryBar;
+export default StoryBar

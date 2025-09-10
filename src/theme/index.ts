@@ -1,3 +1,3 @@
-export { colors } from './colors';
-export { typographyComponents } from './typography';
-export { fontFamily } from './font-family';
+export { colors } from './colors'
+export { typographyComponents } from './typography'
+export { fontFamily } from './font-family'
