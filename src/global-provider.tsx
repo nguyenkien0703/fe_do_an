@@ -39,7 +39,7 @@ const GlobalProvider: FC<ProvidersProps> = ({ locale, messages, children }) => {
       maxCount: 3,
       getContainer: () => document.body,
     })
-    
+
     // Ensure notification container has proper z-index
     const style = document.createElement('style')
     style.innerHTML = `

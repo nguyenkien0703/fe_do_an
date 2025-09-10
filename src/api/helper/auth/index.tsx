@@ -2,7 +2,6 @@ import instance, { clientNoneAuth } from '@/api/instances'
 import { VerificationType } from '@/constant/verifycation-type'
 import { getAccessToken, getRefreshToken } from '@/utils/tokenCookies'
 
-
 export interface CreateRegisterBody {
   username: string
   email: string
@@ -46,17 +45,16 @@ const authApi = {
     const refreshToken = getRefreshToken()
     const accessToken = getAccessToken()
     const logoutBody = {
-      refreshToken: refreshToken
+      refreshToken: refreshToken,
     }
-    return instance.post(
-      `/auth/logout`, logoutBody,
-      {
+    return instance
+      .post(`/auth/logout`, logoutBody, {
         headers: {
-          Authorization:`Bearer ${accessToken}`
-        }
-      }
-    ).then((res)=> res.data)
-  }
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => res.data)
+  },
 }
 
 export default authApi

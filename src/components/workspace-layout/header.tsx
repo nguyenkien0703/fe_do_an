@@ -32,20 +32,20 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       setIsLoggingOut(true)
-      
+
       // Call API logout
       await authApi.logout()
-      
+
       // Update Redux state
       logoutAction()
-      
+
       // Clear session storage
       sessionStorage.removeItem('login_form_state')
       sessionStorage.removeItem('login_user_email')
-      
+
       // Redirect to login
       router.push('/')
-      
+
       // Show success notification
       notification.success({
         message: 'Đăng xuất thành công',
@@ -56,13 +56,13 @@ const Header = () => {
       })
     } catch (error: any) {
       console.error('Logout error:', error)
-      
+
       // Even if API fails, still logout locally
       logoutAction()
       sessionStorage.removeItem('login_form_state')
       sessionStorage.removeItem('login_user_email')
       router.push('/')
-      
+
       notification.warning({
         message: 'Đã đăng xuất',
         description: 'Phiên đăng nhập đã kết thúc.',
@@ -117,7 +117,7 @@ const Header = () => {
 
   return (
     <Layout.Header className="fixed top-0 z-[100] w-full border-b border-gray-200 bg-white px-6 py-3 shadow-sm max-[470px]:px-2">
-      <div className="flex justify-between items-center h-full">
+      <div className="flex h-full items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <div
@@ -134,8 +134,8 @@ const Header = () => {
           <LanguageSwitcher />
 
           {/* User Profile */}
-          
-          {mounted &&  authState.userData && (
+
+          {mounted && authState.userData && (
             <AccountInfo name="Stan Lee" avatar="/images/default-avatar.png" />
           )}
         </div>

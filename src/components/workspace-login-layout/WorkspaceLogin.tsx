@@ -65,7 +65,6 @@ export const WorkspaceLogin = () => {
     return () => clearTimeout(timer)
   }, [])
 
-
   const { mutateAsync: login, isPending: isLoginLoading } = useMutation({
     mutationFn: (data: ILoginForm) => authApi.signIn(data),
     onSuccess: (response: any) => {
@@ -136,7 +135,7 @@ export const WorkspaceLogin = () => {
         description: 'Vui lòng chờ trong giây lát',
         duration: 2,
       })
-      
+
       await login(values)
       console.log('Login success:', values)
     } catch (error) {
@@ -162,7 +161,9 @@ export const WorkspaceLogin = () => {
         notification.error({
           message: t('ERROR_VERIFY_EMAIL_AFTER_REGISTER'),
           description:
-            error?.response?.data?.message || error?.message || 'Mã xác thực không đúng!',
+            error?.response?.data?.message ||
+            error?.message ||
+            'Mã xác thực không đúng!',
           duration: 3,
           placement: 'topRight',
           showProgress: true,
@@ -192,18 +193,20 @@ export const WorkspaceLogin = () => {
   return (
     <div style={{ height: '100vh', position: 'relative' }}>
       {/* Language Switcher in top-right corner */}
-      <div style={{ 
-        position: 'absolute', 
-        top: '20px', 
-        right: '20px', 
-        zIndex: 20,
-        background: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '8px',
-        padding: '8px 12px',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        border: '1px solid rgba(0, 0, 0, 0.1)'
-      }}>
+      <div
+        style={{
+          position: 'absolute',
+          top: '20px',
+          right: '20px',
+          zIndex: 20,
+          background: 'rgba(255, 255, 255, 0.9)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '8px',
+          padding: '8px 12px',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          border: '1px solid rgba(0, 0, 0, 0.1)',
+        }}
+      >
         <LanguageSwitcher />
       </div>
 

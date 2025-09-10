@@ -9,8 +9,6 @@ export interface IAuthState {
   errorCode: string
 }
 
-
-
 export interface ILoginResponse {
   accessToken: string
   refreshToken: string
