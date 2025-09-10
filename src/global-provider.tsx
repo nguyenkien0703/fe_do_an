@@ -1,8 +1,8 @@
 'use client'
 import '@rainbow-me/rainbowkit/styles.css'
-import { ConfigProvider } from 'antd'
+import { ConfigProvider, notification } from 'antd'
 import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl'
-import { FC, ReactNode, useState } from 'react'
+import React, { FC, ReactNode, useState } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useStore } from './stores'
@@ -29,6 +29,26 @@ const GlobalProvider: FC<ProvidersProps> = ({ locale, messages, children }) => {
         },
       }),
   )
+
+  // Configure notification globally
+  React.useEffect(() => {
+    notification.config({
+      placement: 'topRight',
+      duration: 3,
+      showProgress: true,
+      maxCount: 3,
+      getContainer: () => document.body,
+    })
+    
+    // Ensure notification container has proper z-index
+    const style = document.createElement('style')
+    style.innerHTML = `
+      .ant-notification {
+        z-index: 9999 !important;
+      }
+    `
+    document.head.appendChild(style)
+  }, [])
 
   return (
     <ReduxProvider store={store}>

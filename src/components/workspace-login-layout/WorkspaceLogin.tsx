@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Col } from 'antd'
 import { LogoSection } from './LogoSection'
 import { AccountHistory } from './AccountHistory'
@@ -52,6 +52,20 @@ export const WorkspaceLogin = () => {
 
   console.log(authState.userData)
 
+  // Test notification on component mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('Testing notification...')
+      notification.info({
+        message: 'Test Notification',
+        description: 'If you see this, notifications are working!',
+        placement: 'topRight',
+      })
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [])
+
+
   const { mutateAsync: login, isPending: isLoginLoading } = useMutation({
     mutationFn: (data: ILoginForm) => authApi.signIn(data),
     onSuccess: (response: any) => {
@@ -64,6 +78,8 @@ export const WorkspaceLogin = () => {
         message: t('LOGIN_SUCCESS'),
         description: t('LOGIN_SUCCESS_DESCRIPTION'),
         duration: 3,
+        placement: 'topRight',
+        showProgress: true,
       })
     },
     onError: (error: any) => {
@@ -74,8 +90,10 @@ export const WorkspaceLogin = () => {
         description:
           error?.response?.data?.message ||
           error?.message ||
-          'Something wrong, try again!',
+          'Có lỗi xảy ra, vui lòng thử lại!',
         duration: 3,
+        placement: 'topRight',
+        showProgress: true,
       })
     },
   })
@@ -90,6 +108,8 @@ export const WorkspaceLogin = () => {
         message: t('REGISTER_SUCCESS'),
         description: 'Mã xác thực đã được gửi đến email của bạn',
         duration: 3,
+        placement: 'topRight',
+        showProgress: true,
       })
     },
     onError: (error: any) => {
@@ -100,14 +120,23 @@ export const WorkspaceLogin = () => {
         description:
           error?.response?.data?.message ||
           error?.message ||
-          'Something wrong, try again!',
+          'Có lỗi xảy ra, vui lòng thử lại!',
         duration: 3,
+        placement: 'topRight',
+        showProgress: true,
       })
     },
   })
 
   const onLoginFinish = async (values: ILoginForm) => {
     try {
+      // Test notification before API call
+      notification.info({
+        message: 'Đang đăng nhập...',
+        description: 'Vui lòng chờ trong giây lát',
+        duration: 2,
+      })
+      
       await login(values)
       console.log('Login success:', values)
     } catch (error) {
@@ -125,14 +154,18 @@ export const WorkspaceLogin = () => {
           message: t('VERIFY_EMAIL_AFTER_REGISTER_SUCCESS'),
           description: 'VERIFY_EMAIL_AFTER_REGISTER_SUCCESS_DESC',
           duration: 3,
+          placement: 'topRight',
+          showProgress: true,
         })
       },
       onError: (error: any) => {
         notification.error({
           message: t('ERROR_VERIFY_EMAIL_AFTER_REGISTER'),
           description:
-            error?.response?.data?.message || error?.message || t('WRONG_CODE'),
+            error?.response?.data?.message || error?.message || 'Mã xác thực không đúng!',
           duration: 3,
+          placement: 'topRight',
+          showProgress: true,
         })
       },
     })

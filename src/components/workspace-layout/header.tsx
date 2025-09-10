@@ -51,6 +51,8 @@ const Header = () => {
         message: 'Đăng xuất thành công',
         description: 'Hẹn gặp lại bạn lần sau!',
         duration: 3,
+        placement: 'topRight',
+        showProgress: true,
       })
     } catch (error: any) {
       console.error('Logout error:', error)
@@ -65,6 +67,8 @@ const Header = () => {
         message: 'Đã đăng xuất',
         description: 'Phiên đăng nhập đã kết thúc.',
         duration: 3,
+        placement: 'topRight',
+        showProgress: true,
       })
     } finally {
       setIsLoggingOut(false)

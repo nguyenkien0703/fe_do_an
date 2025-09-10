@@ -39,6 +39,8 @@ export const AccountInfo = ({ avatar }: { name: string; avatar: string }) => {
       // Show success notification
       notification.success({
         message: 'Đăng xuất thành công',
+        placement: 'topRight',
+        showProgress: true,
         description: 'Hẹn gặp lại bạn lần sau!',
         duration: 3,
       })
@@ -55,6 +57,8 @@ export const AccountInfo = ({ avatar }: { name: string; avatar: string }) => {
         message: 'Đã đăng xuất',
         description: 'Phiên đăng nhập đã kết thúc.',
         duration: 3,
+        placement: 'topRight',
+        showProgress: true,
       })
     } finally {
       setIsLoggingOut(false)

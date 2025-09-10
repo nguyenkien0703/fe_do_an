@@ -29,6 +29,7 @@
     "axios": "^1.11.0",
     "cookies-next": "^4.2.1",
     "next": "15.5.2",
+    "notistack": "^3.0.1",
     "next-intl": "^4.3.6",
     "prettier": "^3.6.2",
     "react": "19.1.0",

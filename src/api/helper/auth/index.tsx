@@ -2,10 +2,6 @@ import instance, { clientNoneAuth } from '@/api/instances'
 import { VerificationType } from '@/constant/verifycation-type'
 import { getAccessToken, getRefreshToken } from '@/utils/tokenCookies'
 
-interface AuthParams {
-  address: string
-  signature: string
-}
 
 export interface CreateRegisterBody {
   username: string
@@ -29,31 +25,31 @@ export interface VerifyEmailBody {
 }
 const authApi = {
   async signIn(body: CreateLoginBody) {
-    return instance.post(`/auth/login`, body).then((res: any) => res.data)
+    return instance.post(`/auth/login`, body).then((res) => res.data)
   },
-  async refresh(headers: any) {
+  async refresh(headers: Record<string, string>) {
     return clientNoneAuth
       .post(`/auth/refresh`, null, {
         headers,
       })
-      .then((res: any) => res.data)
+      .then((res) => res.data)
   },
 
-  async register(body: CreateRegisterBody): Promise<any> {
+  async register(body: CreateRegisterBody) {
     return instance.post(`/auth/register`, body).then((res) => res.data)
   },
 
-  async verifyEmail(body: VerifyEmailBody): Promise<any> {
+  async verifyEmail(body: VerifyEmailBody) {
     return instance.post(`/auth/verify-email`, body).then((res) => res.data)
   },
-  async logout(): Promise<any> {
+  async logout() {
     const refreshToken = getRefreshToken()
     const accessToken = getAccessToken()
-    let body: any ={
+    const logoutBody = {
       refreshToken: refreshToken
     }
     return instance.post(
-      `/auth/logout`, body,
+      `/auth/logout`, logoutBody,
       {
         headers: {
           Authorization:`Bearer ${accessToken}`
