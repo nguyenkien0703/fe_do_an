@@ -66,8 +66,17 @@ jobs:
       - name: Install Wrangler
         run: npm install -g wrangler
 
+      - name: Create wrangler.toml for deployment
+        run: |
+          cat > wrangler.toml << EOF
+          name = "zono-fe-staging"
+          compatibility_date = "2024-01-01"
+          compatibility_flags = ["nodejs_compat"]
+          pages_build_output_dir = "out"
+          EOF
+
       - name: Deploy to Cloudflare Pages with Wrangler
-        run: wrangler pages deploy out --project-name=zono-fe-staging --compatibility-flags="nodejs_compat"
+        run: wrangler pages deploy out --project-name=zono-fe-staging
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -128,8 +137,17 @@ jobs:
       - name: Install Wrangler
         run: npm install -g wrangler
 
+      - name: Create wrangler.toml for deployment
+        run: |
+          cat > wrangler.toml << EOF
+          name = "zono-fe-production"
+          compatibility_date = "2024-01-01"
+          compatibility_flags = ["nodejs_compat"]
+          pages_build_output_dir = "out"
+          EOF
+
       - name: Deploy to Cloudflare Pages with Wrangler
-        run: wrangler pages deploy out --project-name=zono-fe-production --compatibility-flags="nodejs_compat"
+        run: wrangler pages deploy out --project-name=zono-fe-production
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
