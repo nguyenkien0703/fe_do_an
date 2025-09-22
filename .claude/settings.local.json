@@ -8,7 +8,8 @@
       "Bash(git push:*)",
       "Bash(CLOUDFLARE_ACCOUNT_ID=9b961c2a978e7edefef76e5a1612d5bc npx wrangler pages deploy out --project-name=fe-do-an)",
       "WebFetch(domain:78d5530a.fe-do-an.pages.dev)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []
