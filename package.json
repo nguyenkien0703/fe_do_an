@@ -7,6 +7,7 @@
     "build": "next build",
     "build:prod": "rm -rf .next && next build",
     "build:cloudflare": "cross-env CF_PAGES=1 next build",
+    "deploy:cloudflare": "npm run build:cloudflare && cross-env CLOUDFLARE_ACCOUNT_ID=9b961c2a978e7edefef76e5a1612d5bc npx wrangler pages deploy out --project-name=fe-do-an",
     "start": "next start",
     "lint": "next lint",
     "server-local": "npx next start -p 4000",
@@ -40,7 +41,8 @@
     "redux-persist": "^6.0.0",
     "tailwindcss": "3.3.3",
     "viem": "^2.37.3",
-    "wagmi": "^2.16.9"
+    "wagmi": "^2.16.9",
+    "wrangler": "4.38.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

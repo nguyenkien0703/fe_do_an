@@ -1,0 +1,5 @@
+# Redirect root to default locale
+/ /en 302
+
+# Fallback for any unmatched routes to show 404
+/* /404.html 404
