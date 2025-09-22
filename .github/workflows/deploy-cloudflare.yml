@@ -77,7 +77,7 @@ jobs:
       - name: Deploy to Cloudflare Pages with Wrangler
         run: |
           echo "Deploying with nodejs_compat flag..."
-          wrangler pages deploy out --project-name=fe-do-an --compatibility-date=2024-01-01
+          wrangler pages deploy out --project-name=fe-do-an
           echo "Setting compatibility flags..."
           wrangler pages project list
         env:
@@ -151,7 +151,7 @@ jobs:
       - name: Deploy to Cloudflare Pages with Wrangler
         run: |
           echo "Deploying with nodejs_compat flag..."
-          wrangler pages deploy out --project-name=fe-do-an-production --compatibility-date=2024-01-01
+          wrangler pages deploy out --project-name=fe-do-an-production
           echo "Setting compatibility flags..."
           wrangler pages project list
         env:

@@ -6,8 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "build:prod": "rm -rf .next && next build",
-    "build:cloudflare": "cross-env CF_PAGES=1 next build",
-    "deploy:cloudflare": "npm run build:cloudflare && cross-env CLOUDFLARE_ACCOUNT_ID=9b961c2a978e7edefef76e5a1612d5bc npx wrangler pages deploy out --project-name=fe-do-an",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "preview": "npm run pages:build && wrangler pages dev",
+    "deploy": "npm run pages:build && wrangler pages deploy ./out --project-name=fe-do-an",
+    "pages:deploy": "wrangler pages deploy",
     "start": "next start",
     "lint": "next lint",
     "server-local": "npx next start -p 4000",
@@ -21,6 +23,7 @@
     "@ant-design/cssinjs": "^1.19.1",
     "@ant-design/icons": "^5.3.6",
     "@ant-design/nextjs-registry": "^1.0.1",
+    "@cloudflare/next-on-pages": "1.13.16",
     "@fingerprintjs/fingerprintjs": "^4.6.2",
     "@rainbow-me/rainbowkit": "^2.2.8",
     "@reduxjs/toolkit": "^2.9.0",
@@ -54,6 +57,7 @@
     "eslint-config-next": "15.5.2",
     "patch-package": "^8.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vercel": "48.1.0"
   }
 }

@@ -5,4 +5,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return <WorkspaceLayout>{children}</WorkspaceLayout>
 }
 
+export async function generateStaticParams() {
+  return [
+    { locale: 'en' },
+    { locale: 'vi' }
+  ]
+}
+
 export default Layout

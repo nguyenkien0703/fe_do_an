@@ -8,6 +8,8 @@ import { Metadata } from 'next'
 import { siteConfig } from '@/constant/siteConfig'
 import GlobalProvider from '@/global-provider'
 import WorkspaceLayout from '@/components/workspace-layout'
+import enMessages from '../../locales/en.json'
+import viMessages from '../../locales/vi.json'
 const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] })
 
 export const metadata: Metadata = {
@@ -66,9 +68,11 @@ export default async function RootLayout({
   const { locale } = await params
 
   let messages
-  try {
-    messages = (await import(`../../locales/${locale}.json`)).default
-  } catch (error) {
+  if (locale === 'en') {
+    messages = enMessages
+  } else if (locale === 'vi') {
+    messages = viMessages
+  } else {
     notFound()
   }
 

@@ -1,4 +1,4 @@
-export const dynamic = 'force-static'
+'use client'
 
 export default function PostPage() {
   return (
@@ -7,3 +7,6 @@ export default function PostPage() {
     </div>
   )
 }
+
+export const runtime = 'edge'
+
