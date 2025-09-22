@@ -10,11 +10,11 @@ on:
       - main
 
 jobs:
-  deploy:
+  deploy-staging:
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
-
-
-    name: Deploy to Cloudflare Pages
+    environment: staging
+    name: Deploy to Staging
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,17 +28,10 @@ jobs:
       - name: Install dependencies
         run: npm install --force
 
-      - name: Load Environment Variables
-        env: 
-          NEXT_PUBLIC_API_ENDPOINT: ${{secrets.NEXT_PUBLIC_API_ENDPOINT}}
-        run: |
-          for VAR in $(printend | grep NEXT_PUBLIC_); do 
-            echo "$VAR" >> $GITHUB_ENV
-          done
-
       - name: Build Next.js
-        run: rm -rf .next && npm run build && run -rf ./.next/cache/wepack
-
+        run: npm run build:cloudflare
+        env:
+          NEXT_PUBLIC_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -46,6 +39,37 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: "zono-fe-staging"
-          directory: "./.next"
-          branch: dev
+          directory: "out"
+          gitHubToken: ${{ secrets.GH_PAT }}
+
+  deploy-production:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    name: Deploy to Production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install --force
+
+      - name: Build Next.js
+        run: npm run build:cloudflare
+        env:
+          NEXT_PUBLIC_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: "zono-fe-production"
+          directory: "out"
           gitHubToken: ${{ secrets.GH_PAT }}
