@@ -28,6 +28,36 @@ jobs:
       - name: Install dependencies
         run: npm install --force
 
+      - name: Debug - Check Environment Variables (Staging)
+        run: |
+          echo "🔍 Checking Staging Environment Variables..."
+          echo "============================================="
+          echo "NEXT_PUBLIC_API_ENDPOINT exists: ${{ secrets.NEXT_PUBLIC_API_ENDPOINT != '' }}"
+          echo "CLOUDFLARE_API_TOKEN exists: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}"
+          echo "CLOUDFLARE_ACCOUNT_ID exists: ${{ secrets.CLOUDFLARE_ACCOUNT_ID != '' }}"
+          echo "GH_PAT exists: ${{ secrets.GH_PAT != '' }}"
+          echo "============================================="
+          if [ -z "${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}" ]; then echo "❌ NEXT_PUBLIC_API_ENDPOINT is empty"; else echo "✅ NEXT_PUBLIC_API_ENDPOINT is set"; fi
+          if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then echo "❌ CLOUDFLARE_API_TOKEN is empty"; else echo "✅ CLOUDFLARE_API_TOKEN is set"; fi
+          if [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then echo "❌ CLOUDFLARE_ACCOUNT_ID is empty"; else echo "✅ CLOUDFLARE_ACCOUNT_ID is set"; fi
+          if [ -z "${{ secrets.GH_PAT }}" ]; then echo "❌ GH_PAT is empty"; else echo "✅ GH_PAT is set"; fi
+          echo "🔍 Staging secrets check completed."
+
+      - name: Debug - Show Partial Values (Staging)
+        run: |
+          echo "🔍 Partial Values Check (Staging)..."
+          echo "===================================="
+          echo "Environment: staging"
+          echo "Branch: ${{ github.ref }}"
+          echo "NEXT_PUBLIC_API_ENDPOINT (first 10 chars): ${NEXT_PUBLIC_API_ENDPOINT:0:10}..."
+          echo "CLOUDFLARE_ACCOUNT_ID (first 10 chars): ${CLOUDFLARE_ACCOUNT_ID:0:10}..."
+          echo "CLOUDFLARE_API_TOKEN (length): ${#CLOUDFLARE_API_TOKEN}"
+          echo "===================================="
+        env:
+          NEXT_PUBLIC_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Build Next.js
         run: npm run build:cloudflare
         env:
@@ -59,6 +89,36 @@ jobs:
 
       - name: Install dependencies
         run: npm install --force
+
+      - name: Debug - Check Environment Variables (Production)
+        run: |
+          echo "🔍 Checking Production Environment Variables..."
+          echo "==============================================="
+          echo "NEXT_PUBLIC_API_ENDPOINT exists: ${{ secrets.NEXT_PUBLIC_API_ENDPOINT != '' }}"
+          echo "CLOUDFLARE_API_TOKEN exists: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}"
+          echo "CLOUDFLARE_ACCOUNT_ID exists: ${{ secrets.CLOUDFLARE_ACCOUNT_ID != '' }}"
+          echo "GH_PAT exists: ${{ secrets.GH_PAT != '' }}"
+          echo "==============================================="
+          if [ -z "${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}" ]; then echo "❌ NEXT_PUBLIC_API_ENDPOINT is empty"; else echo "✅ NEXT_PUBLIC_API_ENDPOINT is set"; fi
+          if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then echo "❌ CLOUDFLARE_API_TOKEN is empty"; else echo "✅ CLOUDFLARE_API_TOKEN is set"; fi
+          if [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then echo "❌ CLOUDFLARE_ACCOUNT_ID is empty"; else echo "✅ CLOUDFLARE_ACCOUNT_ID is set"; fi
+          if [ -z "${{ secrets.GH_PAT }}" ]; then echo "❌ GH_PAT is empty"; else echo "✅ GH_PAT is set"; fi
+          echo "🔍 Production secrets check completed."
+
+      - name: Debug - Show Partial Values (Production)
+        run: |
+          echo "🔍 Partial Values Check (Production)..."
+          echo "======================================"
+          echo "Environment: production"
+          echo "Branch: ${{ github.ref }}"
+          echo "NEXT_PUBLIC_API_ENDPOINT (first 10 chars): ${NEXT_PUBLIC_API_ENDPOINT:0:10}..."
+          echo "CLOUDFLARE_ACCOUNT_ID (first 10 chars): ${CLOUDFLARE_ACCOUNT_ID:0:10}..."
+          echo "CLOUDFLARE_API_TOKEN (length): ${#CLOUDFLARE_API_TOKEN}"
+          echo "======================================"
+        env:
+          NEXT_PUBLIC_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_API_ENDPOINT }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Build Next.js
         run: npm run build:cloudflare
