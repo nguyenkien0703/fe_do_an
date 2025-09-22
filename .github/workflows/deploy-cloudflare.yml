@@ -41,6 +41,7 @@ jobs:
           projectName: "zono-fe-staging"
           directory: "out"
           gitHubToken: ${{ secrets.GH_PAT }}
+          wranglerVersion: '3'
 
   deploy-production:
     if: github.ref == 'refs/heads/main'
@@ -73,3 +74,4 @@ jobs:
           projectName: "zono-fe-production"
           directory: "out"
           gitHubToken: ${{ secrets.GH_PAT }}
+          wranglerVersion: '3'
