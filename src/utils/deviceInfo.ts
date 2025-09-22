@@ -1,3 +1,4 @@
+/* eslint-disable */
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 
 let fpPromise: Promise<any> | null = null

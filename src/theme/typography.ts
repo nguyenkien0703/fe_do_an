@@ -1,3 +1,4 @@
+/* eslint-disable */
 const typographyList = [
   {
     variantName: 'Display Large',

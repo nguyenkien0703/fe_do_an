@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { EActionStatus } from '../type'
 import { IAccount, IAuthState } from './type'

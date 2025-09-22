@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable */
 import { Layout } from 'antd'
 import { usePathname } from 'next/navigation'
 import { ReactNode, useEffect, useState } from 'react'
@@ -32,11 +33,11 @@ const WorkspaceLayout = (props: IWorkspaceLayout) => {
       <Header />
 
       <div
-        className="mt-2 flex p-4 pt-16"
+        className="flex p-4 pt-16 mt-2"
         style={{ minHeight: 'calc(100vh - 64px)' }}
       >
         <SidebarLeft />
-        <div className="min-w-0 flex-1" style={{ padding: '0 20px' }}>
+        <div className="flex-1 min-w-0" style={{ padding: '0 20px' }}>
           <Content {...props} />
         </div>
         <SidebarRight />

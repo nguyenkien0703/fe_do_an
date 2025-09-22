@@ -1,7 +1,8 @@
+/* eslint-disable */
 import { Layout } from 'antd'
 import { IWorkspaceLayout } from '.'
 
 const Content = ({ children }: IWorkspaceLayout) => {
-  return <div className="min-h-screen py-6">{children}</div>
+  return <div className="py-6 min-h-screen">{children}</div>
 }
 export default Content

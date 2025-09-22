@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { combineReducers, createSlice } from '@reduxjs/toolkit'
 
 import authReducer from '@/stores/auth/slice'

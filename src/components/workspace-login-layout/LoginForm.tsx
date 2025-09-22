@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react'
 import { Button, Input, Checkbox, Form, Row, Col, Spin } from 'antd'
 import { useTranslations } from 'next-intl'

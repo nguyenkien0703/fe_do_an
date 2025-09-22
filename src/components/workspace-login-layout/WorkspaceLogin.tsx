@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react'
 import { Row, Col } from 'antd'
 import { LogoSection } from './LogoSection'

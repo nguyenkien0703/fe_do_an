@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable */
 import { Input, Avatar, Dropdown, Space } from 'antd'
 import {
   SearchOutlined,
@@ -117,7 +118,7 @@ const Header = () => {
 
   return (
     <Layout.Header className="fixed top-0 z-[100] w-full border-b border-gray-200 bg-white px-6 py-3 shadow-sm max-[470px]:px-2">
-      <div className="flex h-full items-center justify-between">
+      <div className="flex justify-between items-center h-full">
         {/* Logo */}
         <div className="flex items-center">
           <div

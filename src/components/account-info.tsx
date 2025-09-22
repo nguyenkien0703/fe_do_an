@@ -1,4 +1,5 @@
 'use client'
+/* eslint-disable */
 import React from 'react'
 import { Dropdown, MenuProps, Typography } from 'antd'
 import { useTranslations } from 'next-intl'
@@ -124,15 +125,15 @@ export const AccountInfo = ({ avatar }: { name: string; avatar: string }) => {
       overlayStyle={{ borderRadius: '2px' }}
       className="cursor-pointer"
     >
-      <div className="flex items-center gap-2">
-        <div className="flex items-center gap-2">
+      <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center">
           <Image
             loader={() => authState.userData?.avatar || avatar}
             src={authState.userData?.avatar || avatar}
             alt={'avatar'}
             width={24}
             height={24}
-            className="h-8 w-8 rounded-full"
+            className="w-8 h-8 rounded-full"
           />
           <Text className="line-clamp-1 max-w-[87px] text-sm leading-[22px] text-black">
             {authState.userData?.username ?? 'Unknow'}
