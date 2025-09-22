@@ -68,14 +68,18 @@ jobs:
       - name: Create wrangler.toml for deployment
         run: |
           cat > wrangler.toml << EOF
-          name = "zono-fe-staging"
+          name = "fe-do-an"
           compatibility_date = "2024-01-01"
           compatibility_flags = ["nodejs_compat"]
           pages_build_output_dir = "out"
           EOF
 
       - name: Deploy to Cloudflare Pages with Wrangler
-        run: wrangler pages deploy out --project-name=fe-do-an
+        run: |
+          echo "Deploying with nodejs_compat flag..."
+          wrangler pages deploy out --project-name=fe-do-an --compatibility-date=2024-01-01
+          echo "Setting compatibility flags..."
+          wrangler pages project list
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -138,14 +142,18 @@ jobs:
       - name: Create wrangler.toml for deployment
         run: |
           cat > wrangler.toml << EOF
-          name = "zono-fe-production"
+          name = "fe-do-an-production"
           compatibility_date = "2024-01-01"
           compatibility_flags = ["nodejs_compat"]
           pages_build_output_dir = "out"
           EOF
 
       - name: Deploy to Cloudflare Pages with Wrangler
-        run: wrangler pages deploy out --project-name=zono-fe-production
+        run: |
+          echo "Deploying with nodejs_compat flag..."
+          wrangler pages deploy out --project-name=fe-do-an-production --compatibility-date=2024-01-01
+          echo "Setting compatibility flags..."
+          wrangler pages project list
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
