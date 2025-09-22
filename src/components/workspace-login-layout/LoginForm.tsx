@@ -29,7 +29,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         setSubmittable(false)
       },
     )
-    // eslint-disable-next-line
   }, [values])
 
   const t = useTranslations()

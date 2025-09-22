@@ -55,7 +55,6 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-// eslint-disable-next-line import/no-mutable-exports
 let store: ReturnType<typeof makeStore> | undefined
 
 export function makeStore(preloadedState = undefined) {

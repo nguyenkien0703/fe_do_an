@@ -666,7 +666,6 @@ const typographyList = [
   },
 ]
 
-// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const generateTypoClassName = () =>
   typographyList.reduce((acc, item) => {
     // @ts-ignore

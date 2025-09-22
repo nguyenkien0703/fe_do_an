@@ -29,7 +29,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         setSubmittable(false)
       },
     )
-    // eslint-disable-next-line
   }, [values])
 
   return (
