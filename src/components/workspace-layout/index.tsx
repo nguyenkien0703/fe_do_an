@@ -8,6 +8,7 @@ import Header from './header'
 import SidebarLeft from './sidebar-left'
 import SidebarRight from './sidebar-right'
 import { useAuthLogin } from '@/stores/auth/hooks'
+import ChatBoxSpace from './ChatBoxSpace'
 export interface IWorkspaceLayout {
   children: ReactNode
 }
@@ -42,6 +43,8 @@ const WorkspaceLayout = (props: IWorkspaceLayout) => {
         </div>
         <SidebarRight />
       </div>
+
+      <ChatBoxSpace />
     </Layout>
   )
 }
