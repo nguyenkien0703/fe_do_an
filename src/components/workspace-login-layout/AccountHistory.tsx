@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Avatar } from 'antd'
-import { CloseOutlined } from '@ant-design/icons'
+import CloseOutlined from '@ant-design/icons/CloseOutlined'
 
 export const AccountHistory: React.FC = () => {
   return (

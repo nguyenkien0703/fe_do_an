@@ -1,31 +1,36 @@
 'use client'
 import { Avatar, Button, Image } from 'antd'
-import {
-  LikeOutlined,
-  CommentOutlined,
-  ShareAltOutlined,
-  EllipsisOutlined,
-} from '@ant-design/icons'
+import LikeOutlined from '@ant-design/icons/LikeOutlined'
+import CommentOutlined from '@ant-design/icons/CommentOutlined'
+import ShareAltOutlined from '@ant-design/icons/ShareAltOutlined'
+import EllipsisOutlined from '@ant-design/icons/EllipsisOutlined'
 import React, { useState } from 'react'
 
 interface PostProps {
   id: string
-  author: {
-    name: string
-    avatar: string
-    time: string
-  }
+  userId: string
+  username: string
+  avatar: string
+  createdAt: string
   content: string
-  images?: string[]
+  media?: Media[]
   likes: number
   comments: number
   shares: number
 }
 
+interface Media {
+  type: string
+  url: string
+}
+
 const Post: React.FC<PostProps> = ({
-  author,
+  userId,
+  username,
+  avatar,
   content,
-  images,
+  createdAt,
+  media,
   likes,
   comments,
   shares,
@@ -48,10 +53,10 @@ const Post: React.FC<PostProps> = ({
       <div className="p-4">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-3">
-            <Avatar size={48} src={author.avatar} />
+            {/* <Avatar size={48} src={} /> */} Todo Add devops
             <div>
-              <div className="font-semibold text-gray-900">{author.name}</div>
-              <div className="text-sm text-gray-500">{author.time}</div>
+              <div className="font-semibold text-gray-900">{username}</div>
+              <div className="text-sm text-gray-500">{createdAt}</div>
             </div>
           </div>
           <Button
@@ -65,26 +70,43 @@ const Post: React.FC<PostProps> = ({
         {content && <div className="mt-4 text-gray-800">{content}</div>}
       </div>
 
-      {/* Post Images */}
-      {images && images.length > 0 && (
+      {/* Post Media (image | video) */}
+      {media && media.length > 0 && (
         <div className="relative">
-          {images.length === 1 ? (
-            <Image
-              src={images[0]}
-              alt="Post image"
-              className="max-h-96 w-full object-cover"
-              preview={false}
-            />
+          {media.length === 1 ? (
+            media[0].type === 'VIDEO' ? (
+              <video
+                src={media[0].url}
+                controls
+                className="max-h-96 w-full object-cover"
+              />
+            ) : (
+              <Image
+                src={media[0].url}
+                alt="Post image"
+                className="max-h-96 w-full object-cover"
+                preview={false}
+              />
+            )
           ) : (
             <div className="grid grid-cols-2 gap-1">
-              {images.slice(0, 2).map((image, index) => (
-                <Image
-                  key={index}
-                  src={image}
-                  alt={`Post image ${index + 1}`}
-                  className="h-48 w-full object-cover"
-                  preview={false}
-                />
+              {media.slice(0, 2).map((m, index) => (
+                m.type === 'VIDEO' ? (
+                  <video
+                    key={index}
+                    src={m.url}
+                    controls
+                    className="h-48 w-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    key={index}
+                    src={m.url}
+                    alt={`Post image ${index + 1}`}
+                    className="h-48 w-full object-cover"
+                    preview={false}
+                  />
+                )
               ))}
             </div>
           )}
